@@ -1,0 +1,19 @@
+{
+  "name": "fdparty-dev-runner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "fdparty 아키텍트 렌즈 병렬 호출 파이프라인 — council/agents/아키텍트/*.md(SSOT)를 Anthropic API로 병렬 실행",
+  "scripts": {
+    "council": "tsx council.ts",
+    "greet": "tsx council.ts --greet"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.100.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.9.0"
+  }
+}
