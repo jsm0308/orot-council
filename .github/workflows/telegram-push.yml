@@ -1,0 +1,51 @@
+name: Daily Telegram Push
+
+on:
+  schedule:
+    # KST 07:00 = UTC 22:00 (previous day)
+    - cron: '0 22 * * *'
+    # KST 09:00 = UTC 00:00
+    - cron: '0 0 * * *'
+    # KST 19:00 = UTC 10:00
+    - cron: '0 10 * * *'
+    # KST 21:00 = UTC 12:00
+    - cron: '0 12 * * *'
+  workflow_dispatch:  # Manual trigger for testing
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install requests python-dotenv
+
+      - name: Determine mode by hour (KST)
+        id: mode
+        run: |
+          HOUR=$(TZ='Asia/Seoul' date +%H)
+          echo "KST hour: $HOUR"
+          if [ "$HOUR" = "07" ]; then
+            echo "mode=health" >> $GITHUB_OUTPUT
+          elif [ "$HOUR" = "09" ]; then
+            echo "mode=invest" >> $GITHUB_OUTPUT
+          elif [ "$HOUR" = "19" ]; then
+            echo "mode=tweet" >> $GITHUB_OUTPUT
+          elif [ "$HOUR" = "21" ]; then
+            echo "mode=status" >> $GITHUB_OUTPUT
+          else
+            echo "mode=all" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/auto_telegram.py --mode ${{ steps.mode.outputs.mode }}

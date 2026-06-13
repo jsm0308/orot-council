@@ -48,9 +48,13 @@ API_BASE = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
 
 
 def get_chat_id() -> int:
+    # Priority: environment variable > file
+    env_id = os.getenv("TELEGRAM_CHAT_ID", "")
+    if env_id:
+        return int(env_id)
     if not CHAT_ID_PATH.exists():
         raise RuntimeError(
-            "Chat ID not found. Send /start to @ttttooonny_bot on Telegram first."
+            "Chat ID not found. Set TELEGRAM_CHAT_ID env var or send /start to @ttttooonny_bot first."
         )
     return int(CHAT_ID_PATH.read_text().strip())
 
