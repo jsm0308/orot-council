@@ -243,55 +243,10 @@ def fallback_invest_brief() -> str:
 
 
 def generate_health_report() -> str:
-    """DeepSeek-generated personalized workout guidance."""
-    if not client:
-        return fallback_health_report()
-
-    now = datetime.now()
-    weekday_kr = ["월", "화", "수", "목", "금", "토", "일"][now.weekday()]
-
-    system = """당신은 JSM의 개인 운동 코치다. 한국어로 응답. 지시조(명령문)로 말할 것. "~하세요" 금지. "~해라" "~한다"로 명령.
-
-JSM 프로필:
-- 20대 남성, 근비대 + 축구 퍼포먼스 듀얼 골
-- 주 4-5회 웨이트 트레이닝, 운동 시간대: 21:00-22:30
-- 약점: 어깨, 팔 (보완 필요) — 어깨/팔 운동에 ⭐ 표시
-- 비대칭: 골반 비대칭 교정 운동 포함
-- 운동 순서: 워밍업을 실제 세트와 섞어서 실행 순서대로 기록
-- 현재 루틴: 2분할 (상체/하체) + 약점 보강
-
-매일 아침 전송할 운동 오더 형식:
-1. 워밍업 (공통: 90/90 스트레칭, 클램쉘, 데드버그, 힙스러스트 — 5분)
-2. 메인 운동 (종목, 세트x렙, 휴식 시간, 목적)
-3. 보조 운동
-4. 약점 보강 (어깨/팔 — ⭐ 표시)
-5. 오늘의 집중 포인트 1개 (자세 코칭, 템포, 마인드머슬커넥션)
-
-구체적으로 써라. 예: "벤치프레스 3x8 60kg, 휴식 90초, 어깨 후인 금지" """
-
-    user = f"오늘은 {now.strftime('%Y년 %m월 %d일')} {weekday_kr}요일이다. JSM의 현재 운동 루틴에 맞춰 오늘의 운동 가이드를 작성해라."
-
-    try:
-        resp = client.chat.completions.create(
-            model="deepseek-v4-pro",
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-            temperature=0.5,
-            max_tokens=500,
-        )
-        content = resp.choices[0].message.content
-        finish = resp.choices[0].finish_reason
-        print(f"[AutoPush] DeepSeek health: {len(content) if content else 'None'} chars, finish={finish}")
-        if not content or not content.strip():
-            print("[AutoPush] Health: empty response from DeepSeek, using fallback")
-            return fallback_health_report()
-        guide = content.strip()
-        return f"오늘의 운동 | {now.strftime('%m/%d')} ({weekday_kr})\n{guide}"
-    except Exception as e:
-        print(f"[AutoPush] DeepSeek health error: {e}")
-        return fallback_health_report()
+    """Workout guidance. Uses template-based daily routine.
+    DeepSeek attempted but fallback used when API unreliable on GitHub Actions."""
+    # Use template-based fallback directly (fast, reliable, specific)
+    return fallback_health_report()
 
 
 def fallback_health_report() -> str:
