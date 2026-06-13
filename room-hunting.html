@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>월세방 후보 관리</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card-bg: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e0e0e0;
+    --text-dim: #888;
+    --accent: #60a5fa;
+    --accent-dim: #1e3a5f;
+    --green: #34d399;
+    --green-dim: #064e3b;
+    --yellow: #fbbf24;
+    --yellow-dim: #78350f;
+    --red: #f87171;
+    --red-dim: #7f1d1d;
+    --purple: #a78bfa;
+    --purple-dim: #4c1d95;
+    --orange: #fb923c;
+    --orange-dim: #7c2d12;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  .header {
+    text-align: center;
+    padding: 40px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+  .header p { color: var(--text-dim); margin-top: 8px; font-size: 0.95rem; }
+
+  .summary-bar {
+    display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap;
+  }
+  .summary-item {
+    flex: 1; min-width: 120px; background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; text-align: center;
+  }
+  .summary-item .num { font-size: 1.5rem; font-weight: 700; }
+  .summary-item .label { color: var(--text-dim); font-size: 0.8rem; margin-top: 2px; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    transition: border-color 0.2s; box-shadow: var(--shadow);
+  }
+  .card:hover { border-color: #444; }
+  .card.picked { border-color: var(--green); box-shadow: 0 0 0 1px var(--green), var(--shadow); }
+  .card-header {
+    padding: 16px 16px 12px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .card-header .title-area h2 { font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
+  .card-header .title-area .subtitle { color: var(--text-dim); font-size: 0.8rem; }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: 0.7rem; font-weight: 600; white-space: nowrap;
+  }
+  .badge-zigbang { background: #3b82f6; color: #fff; }
+  .badge-eta { background: #f97316; color: #fff; }
+
+  .card-body { padding: 12px 16px; }
+  .card-body .price { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+  .card-body .price small { font-size: 0.8rem; color: var(--text-dim); font-weight: 400; }
+  .info-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .tag {
+    padding: 3px 8px; border-radius: 6px; font-size: 0.75rem;
+    font-weight: 500; background: #222; color: var(--text-dim);
+  }
+  .tag.highlight { background: var(--accent-dim); color: var(--accent); }
+  .detail-list { margin-top: 8px; }
+  .detail-list .dl-item {
+    display: flex; padding: 4px 0; font-size: 0.82rem;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .detail-list .dl-label { color: var(--text-dim); min-width: 80px; flex-shrink: 0; }
+  .detail-list .dl-value { flex: 1; }
+  .card-footer {
+    padding: 10px 16px; border-top: 1px solid var(--border);
+    display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+  }
+  .btn {
+    padding: 6px 12px; border-radius: 8px; font-size: 0.8rem;
+    font-weight: 600; border: none; cursor: pointer; transition: all 0.15s;
+    font-family: inherit;
+  }
+  .btn-status { background: #222; color: var(--text); }
+  .btn-status:hover { background: #333; }
+  .btn-status.visit-planned { background: var(--yellow-dim); color: var(--yellow); }
+  .btn-status.visit-done { background: var(--accent-dim); color: var(--accent); }
+  .btn-status.rejected { background: var(--red-dim); color: var(--red); }
+  .btn-pick { background: var(--green-dim); color: var(--green); }
+  .btn-pick:hover { background: #065f46; }
+  .btn-pick.active { background: var(--green); color: #000; }
+  .notes-area {
+    width: 100%; margin-top: 6px; padding: 6px 10px;
+    background: #161616; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); font-size: 0.78rem; font-family: inherit;
+    resize: vertical; min-height: 32px;
+  }
+  .notes-area::placeholder { color: #555; }
+
+  .section-title {
+    font-size: 1.05rem; font-weight: 600; margin: 36px 0 14px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+
+  .comparison-table {
+    width: 100%; border-collapse: collapse; font-size: 0.82rem;
+    background: var(--card-bg); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+  }
+  .comparison-table th, .comparison-table td {
+    padding: 8px 12px; text-align: center; border: 1px solid var(--border);
+  }
+  .comparison-table th {
+    background: #222; font-weight: 600; color: var(--text-dim);
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .comparison-table td:first-child {
+    text-align: left; font-weight: 500; color: var(--text-dim); background: #161616;
+  }
+  .comparison-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .link-btn {
+    color: var(--accent); text-decoration: none; font-size: 0.78rem;
+    font-weight: 500; padding: 4px 8px; border-radius: 6px;
+    background: var(--accent-dim); transition: background 0.15s;
+  }
+  .link-btn:hover { background: #254a74; }
+
+  /* Timeline */
+  .phase {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; box-shadow: var(--shadow);
+  }
+  .phase-header {
+    padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+    cursor: pointer; user-select: none; background: #161616;
+    border-bottom: 1px solid transparent; transition: border-color 0.2s;
+  }
+  .phase.expanded .phase-header { border-bottom-color: var(--border); }
+  .phase-number {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .phase-number.p1 { background: var(--purple-dim); color: var(--purple); }
+  .phase-number.p2 { background: var(--accent-dim); color: var(--accent); }
+  .phase-number.p3 { background: var(--yellow-dim); color: var(--yellow); }
+  .phase-number.p4 { background: var(--orange-dim); color: var(--orange); }
+  .phase-number.p5 { background: var(--green-dim); color: var(--green); }
+  .phase-info { flex: 1; }
+  .phase-info .phase-title { font-size: 0.95rem; font-weight: 600; }
+  .phase-info .phase-sub { color: var(--text-dim); font-size: 0.78rem; margin-top: 1px; }
+  .phase-toggle { color: var(--text-dim); font-size: 0.85rem; transition: transform 0.2s; }
+  .phase.expanded .phase-toggle { transform: rotate(90deg); }
+  .phase-body { display: none; padding: 16px 18px; }
+  .phase.expanded .phase-body { display: block; }
+
+  .step-item {
+    display: flex; gap: 10px; padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04); align-items: flex-start;
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--border); flex-shrink: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; transition: all 0.15s; margin-top: 2px;
+  }
+  .step-check:hover { border-color: var(--green); }
+  .step-check.done { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+  .step-content { flex: 1; font-size: 0.85rem; line-height: 1.55; }
+  .step-content .step-title { font-weight: 600; margin-bottom: 3px; }
+  .step-content .step-detail { color: var(--text-dim); font-size: 0.8rem; }
+  .step-content .step-detail b { color: var(--text); }
+  .ext-link {
+    color: var(--accent); text-decoration: underline;
+    text-underline-offset: 2px; text-decoration-thickness: 1px;
+    transition: color 0.15s;
+  }
+  .ext-link:hover { color: #93c5fd; }
+  .info-box .ext-link { color: #93c5fd; }
+
+  .info-box {
+    padding: 10px 14px; border-radius: 8px; margin: 8px 0; font-size: 0.82rem; line-height: 1.55;
+  }
+  .info-box.blue { background: var(--accent-dim); border: 1px solid rgba(96,165,250,0.3); }
+  .info-box.red { background: var(--red-dim); border: 1px solid rgba(248,113,113,0.3); }
+  .info-box.green { background: var(--green-dim); border: 1px solid rgba(52,211,153,0.3); }
+  .info-box.yellow { background: var(--yellow-dim); border: 1px solid rgba(251,191,36,0.3); }
+
+  .check-list { margin: 6px 0; }
+  .check-list li {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 3px 0; font-size: 0.82rem; list-style: none;
+  }
+  .check-list li .mk { font-weight: 700; font-size: 0.8rem; flex-shrink: 0; width: 18px; }
+  .check-list li .mk.g { color: var(--green); }
+  .check-list li .mk.y { color: var(--yellow); }
+
+  .loan-table {
+    width: 100%; border-collapse: collapse; font-size: 0.78rem;
+    background: var(--card-bg); border-radius: var(--radius); overflow: hidden;
+  }
+  .loan-table th, .loan-table td {
+    padding: 7px 10px; text-align: center; border: 1px solid var(--border);
+  }
+  .loan-table th { background: #222; font-weight: 600; color: var(--text-dim); font-size: 0.72rem; }
+  .loan-table td:first-child {
+    text-align: left; font-weight: 500; color: var(--text-dim); background: #161616;
+  }
+  .loan-table .pass { color: var(--green); font-weight: 600; }
+  .loan-table .unknown { color: var(--yellow); font-weight: 600; }
+
+  .clause-box {
+    background: #1a120b; border: 1px solid rgba(251,191,36,0.4);
+    border-radius: var(--radius); padding: 12px 18px; margin: 10px 0;
+    font-size: 0.85rem; line-height: 1.7;
+  }
+  .clause-box .label {
+    color: var(--yellow); font-weight: 700; font-size: 0.75rem;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .copy-btn {
+    padding: 4px 10px; border-radius: 6px; font-size: 0.72rem;
+    font-weight: 600; border: 1px solid var(--border); background: #222;
+    color: var(--text-dim); cursor: pointer; font-family: inherit; transition: all 0.15s;
+  }
+  .copy-btn:hover { background: #333; color: var(--text); }
+  .copy-btn.copied { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+  .progress-bar-container { background: #222; border-radius: 10px; height: 8px; margin-bottom: 6px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--purple), var(--green)); border-radius: 10px; transition: width 0.4s ease; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); }
+
+  .fact-note {
+    font-size: 0.78rem; color: var(--text-dim); margin-top: 8px;
+    padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: 8px; line-height: 1.6;
+  }
+  .fact-note b { color: var(--yellow); }
+
+  /* Calendar embed */
+  .calendar-section { margin-bottom: 32px; }
+  .calendar-toolbar {
+    display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .calendar-url-input {
+    flex: 1; min-width: 200px; padding: 8px 12px;
+    background: #161616; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); font-size: 0.82rem; font-family: inherit;
+  }
+  .calendar-url-input::placeholder { color: #555; }
+  .calendar-iframe-wrap {
+    position: relative; width: 100%; border-radius: var(--radius); overflow: hidden;
+    background: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow);
+    min-height: 500px;
+  }
+  .calendar-iframe-wrap iframe {
+    width: 100%; height: 600px; border: 0; display: block;
+  }
+  .calendar-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 500px; color: var(--text-dim); gap: 16px; text-align: center; padding: 40px;
+  }
+  .calendar-placeholder .big-icon { font-size: 3rem; }
+  .calendar-placeholder .hint { font-size: 0.82rem; max-width: 400px; line-height: 1.6; }
+  .calendar-placeholder .hint code {
+    background: #222; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;
+  }
+
+  @media (max-width: 840px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .comparison-table, .loan-table { font-size: 0.7rem; }
+    .comparison-table th, .comparison-table td,
+    .loan-table th, .loan-table td { padding: 5px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>월세방 후보 관리</h1>
+    <p>총 5곳 · 진행률으로 한눈에 관리</p>
+  </div>
+
+  <div class="summary-bar">
+    <div class="summary-item"><div class="num" id="totalCount">5</div><div class="label">전체 후보</div></div>
+    <div class="summary-item"><div class="num" id="plannedCount">5</div><div class="label">방문 예정</div></div>
+    <div class="summary-item"><div class="num" id="visitedCount">0</div><div class="label">방문 완료</div></div>
+    <div class="summary-item"><div class="num" id="pickedCount">0</div><div class="label">최종 선택</div></div>
+    <div class="summary-item"><div class="num" style="color:var(--red)" id="rejectedCount">0</div><div class="label">탈락</div></div>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+
+  <h2 class="section-title">비교표</h2>
+  <div style="overflow-x:auto;">
+    <table class="comparison-table" id="comparisonTable">
+      <thead><tr><th>항목</th><th>#1 직방</th><th>#2 직방</th><th>#3 직방</th><th>#4 직방</th><th>#5 에타</th></tr></thead>
+      <tbody id="comparisonBody"></tbody>
+    </table>
+  </div>
+
+  <!-- ==================== 구글 캘린더 ==================== -->
+  <h2 class="section-title">구글 캘린더 일정</h2>
+  <div class="calendar-section">
+    <div class="calendar-toolbar">
+      <input type="text" class="calendar-url-input" id="calendarUrlInput" value="https://calendar.google.com/calendar/embed?src=jsmjsm030804%40gmail.com&ctz=Asia%2FSeoul" />
+      <button class="btn btn-pick" onclick="applyCalendar()">적용</button>
+      <button class="btn btn-status" onclick="clearCalendar()">초기화</button>
+    </div>
+    <div class="calendar-iframe-wrap" id="calendarWrap">
+      <iframe src="https://calendar.google.com/calendar/embed?src=jsmjsm030804%40gmail.com&ctz=Asia%2FSeoul" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </div>
+
+  <!-- ==================== 전체 프로세스 ==================== -->
+  <h2 class="section-title">집 보러 가기 → 거래 완료 전체 프로세스</h2>
+  <div class="progress-bar-container"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
+  <div class="progress-label"><span id="progressText">0 / 21 단계 완료</span><span id="progressPercent">0%</span></div>
+
+  <div class="timeline" id="timeline">
+
+    <!-- Phase 1: 사전 준비 -->
+    <div class="phase expanded">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-number p1">1</div>
+        <div class="phase-info"><div class="phase-title">사전 준비</div><div class="phase-sub">방 보기 전 체크 + 준비</div></div>
+        <div class="phase-toggle">▶</div>
+      </div>
+      <div class="phase-body">
+
+        <div class="step-item">
+          <div class="step-check" data-step="1" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">1-1. 청년 보증부 월세대출 자격 체크</div>
+            <div class="step-detail">
+              <ul class="check-list">
+                <li><span class="mk g">✅</span><b>나이</b>: 만 19~34세 (신청일 기준, 35세 생일 전)</li>
+                <li><span class="mk g">✅</span><b>세대주</b>: 무주택 단독세대주 또는 예비세대주 (세대원 전원 무주택)</li>
+                <li><span class="mk g">✅</span><b>소득</b>: 부부합산 연소득 5,000만원 이하 (근로·프리랜서·사업소득 합산)</li>
+                <li><span class="mk y">⚠️</span><b>자산</b>: 순자산 3.45억원 이하 (2026년 기준. 예금·주식·자동차 포함)</li>
+                <li><span class="mk g">✅</span><b>신용</b>: 연체·부도·신용회복 절차 중이면 불가</li>
+                <li><span class="mk g">✅</span><b>기존 대출</b>: 주택도시기금·전세자금·주담대 이용 중이면 불가</li>
+                <li><span class="mk g">✅</span><b>공공임대</b>: 현재 공공임대주택 거주 중이면 불가</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="2" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">1-2. 대출 한도 & 금리 확인</div>
+            <div class="step-detail">
+              <div class="info-box green">
+                보증금 대출: 최대 <b>4,500만원</b> (보증금의 70% 이내), 금리 <b>연 1.3%</b><br>
+                월세 대출: 최대 <b>1,200만원</b> (24개월, 월 최대 50만원) · 월 20만원↓ <b>0%</b>, 초과~50만원 <b>연 1.0%</b><br>
+                보증금+월세 합계 ≤ 전세금의 <b>80%</b> 이내<br>
+                신청: <a href="https://nhuf.molit.go.kr" target="_blank" class="ext-link">기금e든든</a> 또는 국민·신한·우리·기업·농협은행 · 계약 후 <b>3개월 이내</b> 신청
+              </div>
+              <div class="fact-note">
+                <b>팩트체크</b> (Google AI 답변 검증): 자산 기준만 3.37→<b>3.45억</b> 수정. AI가 신용·공공임대·기존대출·대출한도를 누락했음.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="3" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">1-3. 필요 서류 미리 준비</div>
+            <div class="step-detail">
+              • <b>신분증</b> · <b>건강보험자격득실확인서</b> (<a href="https://www.nhis.or.kr" target="_blank" class="ext-link">건보공단</a> / <a href="https://www.gov.kr" target="_blank" class="ext-link">정부24</a>)<br>
+              • <b>소득증명서류</b>: 재직증명서 + 소득금액증명원(<a href="https://www.hometax.go.kr" target="_blank" class="ext-link">홈택스</a>) / 급여통장사본 / 원천징수영수증<br>
+              • <b>주민등록등본</b> (<a href="https://www.gov.kr" target="_blank" class="ext-link">정부24</a>)
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="4" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">1-4. 부동산 방문 일정 잡기</div>
+            <div class="step-detail">직방 앱에서 <b>문의하기</b>로 전화/채팅 → 방문 약속. 에타 #5는 직거래라 따로 연락. 하루에 2~3곳 몰아서 보는 게 효율적.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Phase 2: 방문 & 현장 체크 -->
+    <div class="phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-number p2">2</div>
+        <div class="phase-info"><div class="phase-title">방문 & 현장 체크</div><div class="phase-sub">실제 집 보면서 확인할 것들</div></div>
+        <div class="phase-toggle">▶</div>
+      </div>
+      <div class="phase-body">
+
+        <div class="step-item">
+          <div class="step-check" data-step="5" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">2-1. 건물·집 기본 정보 확인</div>
+            <div class="step-detail">
+              • <b>건축물대장 용도</b>: "주택" 또는 "주거용 오피스텔"인지 확인. <b>근린생활시설이면 대출 절대 불가</b> (<a href="https://www.gov.kr" target="_blank" class="ext-link">정부24</a>에서 건축물대장 열람 가능)<br>
+              • <b>건물 외관</b>: 균열·누수 흔적, 복도·계단 청결도, 조명, 소방시설
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="6" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">2-2. 등기부등본 열람 요청 (필수!)</div>
+            <div class="step-detail">
+              • <b>갑구</b>: 소유자 확인, 압류·가압류·가처분·경매신청 여부<br>
+              • <b>을구</b>: 근저당권 채권최고액 확인 (보증금보다 큰 선순위 채권 있으면 위험)<br>
+              • <b>토지</b>: 건물과 대지 모두 임대인 소유인지 확인
+              <div class="info-box red">방문 전에 <a href="https://www.iros.go.kr" target="_blank" class="ext-link">인터넷등기소</a>에서 미리 떼서 보거나, 부동산에서 현장 확인 필수. 이거 안 하면 보증금 날릴 수 있음.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="7" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">2-3. 방 내부 상태 꼼꼼 체크</div>
+            <div class="step-detail">
+              • <b>채광·환기</b>: 창문 방향, 직사광, 통풍 / <b>곰팡이·누수</b>: 벽지·천장·실리콘·베란다<br>
+              • <b>배수</b>: 싱크대·세면대·샤워실 물 내려보기 / <b>방음</b>: 옆집·위층·도로 소음 (창문 닫고 열고)<br>
+              • <b>냄새</b>: 하수구·담배·습기 냄새 / <b>벌레</b>: 바퀴벌레 흔적 (싱크대 아래, 베란다 구석)<br>
+              • <b>전기</b>: 콘센트 위치·개수 / <b>옵션 작동</b>: 에어컨·냉장고·세탁기·보일러 실제 테스트
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="8" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">2-4. 관리비 & 주변 환경 체크</div>
+            <div class="step-detail">
+              • 전월 <b>관리비 고지서</b>로 실제 부담액 확인 / <b>인터넷</b> 설치 가능 통신사·기존 랜선 포트<br>
+              • 주변 <b>소음</b>(저녁 유흥가·공사장·대로변) · <b>치안</b>(골목 CCTV·조명) · 편의시설 실제 도보 시간
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="9" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">2-5. 부동산 중개사에게 딱 3가지 질문</div>
+            <div class="step-detail">
+              ① "건축물대장상 <b>주택/원룸/오피스텔</b> 맞나요?"<br>
+              <span style="color:var(--red);font-size:0.75rem;">↳ 근린생활시설이면 대출 절대 불가. 건축물대장 열람해서 직접 확인.</span><br>
+              ② "청년 보증부 월세대출 진행할 건데 <b>집주인 협조</b> 가능한가요?"<br>
+              <span style="color:var(--red);font-size:0.75rem;">↳ 대출 실행 시 집주인 계좌로 입금. 서류 확인 필요하므로 집주인 동의 필수.</span><br>
+              ③ "건물 <b>선순위 채권</b>(빚) 괜찮나요? <b>등기부등본</b> 보여주세요."<br>
+              <span style="color:var(--red);font-size:0.75rem;">↳ 갑구(압류·가압류·경매) + 을구(근저당권·채권최고액) 확인. 건물 빚 많으면 은행 심사 탈락.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="10" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">2-6. 5개 매물 대출 기준 적격 확인</div>
+            <div class="step-detail">
+              <div style="overflow-x:auto;">
+                <table class="loan-table">
+                  <thead><tr><th>대출 요건</th><th>기준</th><th>#1</th><th>#2</th><th>#3</th><th>#4</th><th>#5</th></tr></thead>
+                  <tbody>
+                    <tr><td>보증금</td><td>≤ 6,500만</td><td class="pass">500만 ✅</td><td class="pass">500만 ✅</td><td class="pass">500만 ✅</td><td class="pass">300만 ✅</td><td class="pass">300만 ✅</td></tr>
+                    <tr><td>월세</td><td>≤ 70만</td><td class="pass">40만 ✅</td><td class="pass">45만 ✅</td><td class="pass">42만 ✅</td><td class="pass">44만 ✅</td><td class="pass">45만 ✅</td></tr>
+                    <tr><td>전용면적</td><td>≤ 60㎡</td><td class="pass">27㎡ ✅</td><td class="pass">27㎡ ✅</td><td class="pass">26.45㎡ ✅</td><td class="pass">26.45㎡ ✅</td><td class="pass">~29.7㎡ ✅</td></tr>
+                    <tr><td>용도</td><td>주택·오피스텔</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td></tr>
+                    <tr><td>등기부</td><td>압류·경매 無</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td></tr>
+                    <tr><td>선순위채권</td><td>주택가액 60%↓</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td><td class="unknown">확인⚠️</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="info-box blue" style="margin-top:8px;">5개 모두 보증금·월세·면적 기준 통과. 방문 시 <b>건축물대장 용도 + 등기부등본</b>만 확인하면 됨.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Phase 3: 가계약 -->
+    <div class="phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-number p3">3</div>
+        <div class="phase-info"><div class="phase-title">가계약</div><div class="phase-sub">마음에 드는 집을 골랐다면</div></div>
+        <div class="phase-toggle">▶</div>
+      </div>
+      <div class="phase-body">
+
+        <div class="step-item">
+          <div class="step-check" data-step="11" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">3-1. 계약 전 등기부등본 재확인</div>
+            <div class="step-detail">
+              계약금 보내기 직전에 <b>등기부등본 다시 한 번 열람</b> (상태 바뀌었을 수 있음). <a href="https://www.iros.go.kr" target="_blank" class="ext-link">인터넷등기소</a>에서 직접 발급 가능.
+              <div class="info-box red">⚠️ 이거 안 하면 계약금 날릴 수 있습니다. 진짜로 하세요.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="12" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">3-2. 계약서 특약 문구 반드시 넣기</div>
+            <div class="step-detail">
+              <div class="clause-box">
+                <div class="label">계약서 특약사항에 반드시 기재</div>
+                "임대인 또는 임차목적물의 하자로 인해 청년전용 보증부 월세대출이 거절될 경우, 본 계약은 무효로 하며 임대인은 수령한 계약금 전액을 임차인에게 즉시 반환한다."
+              </div>
+              <button class="copy-btn" onclick="copyClause()" id="copyClauseBtn">📋 특약 문구 복사</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="13" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">3-3. 계약금 송금 (보증금의 5%)</div>
+            <div class="step-detail">
+              • 계약금 = 전체 보증금의 <b>5%</b> (500만원 기준 25만원)<br>
+              • <b>임대인 통장으로 직접 송금</b> (중개사 통장 X), 송금 메모에 "계약금" 명시 · 계약서+영수증 받기
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="14" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">3-4. 중개수수료 확인</div>
+            <div class="step-detail">
+              • 월세 중개보수 상한: <b>보증금 + (월세 × 70) × 0.4%</b><br>
+              • 예: 500/40이면 [500만+(40만×70)] × 0.4% = <b>13.2만원</b>. 거래 전 중개사에게 먼저 물어볼 것.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Phase 4: 대출 신청 & 심사 -->
+    <div class="phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-number p4">4</div>
+        <div class="phase-info"><div class="phase-title">대출 신청 & 심사</div><div class="phase-sub">은행 대출 받는 과정</div></div>
+        <div class="phase-toggle">▶</div>
+      </div>
+      <div class="phase-body">
+
+        <div class="step-item">
+          <div class="step-check" data-step="15" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">4-1. 대출 신청</div>
+            <div class="step-detail">
+              • <a href="https://nhuf.molit.go.kr" target="_blank" class="ext-link">기금e든든</a> 또는 국민·신한·우리·기업·농협은행 방문<br>
+              • 계약서 + 신분증 + 소득증명서류 + 주민등록등본 제출
+              <div class="info-box blue">📌 계약 체결일로부터 <b>3개월 이내</b>에 신청해야 합니다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="16" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">4-2. HUG 보증 심사 대기</div>
+            <div class="step-detail">
+              은행 → HUG 보증 심사 의뢰, <b>약 1~2주 소요</b>. 등기부·건축물대장·임대인 정보 검증. 추가 서류 요청 올 수 있으니 연락 가능하게 유지.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="17" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">4-3. 대출 승인 & 약정 체결</div>
+            <div class="step-detail">
+              승인 나면 은행 방문해서 대출 약정서 서명. 보증금 대출금 + 첫 월세 대출금 <b>집주인 계좌로 직접 입금</b> (내 계좌로 오는 돈 아니므로 미리 집주인에게 통보).
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Phase 5: 본계약 & 입주 -->
+    <div class="phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-number p5">5</div>
+        <div class="phase-info"><div class="phase-title">본계약 & 입주</div><div class="phase-sub">잔금 치르고 들어가기</div></div>
+        <div class="phase-toggle">▶</div>
+      </div>
+      <div class="phase-body">
+
+        <div class="step-item">
+          <div class="step-check" data-step="18" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">5-1. 잔금 송금 & 본계약 완료</div>
+            <div class="step-detail">
+              대출 승인 확인 후 <b>잔금 + 본인 부담 보증금</b> 송금. 입주일에 맞춰 집 열쇠 수령, 최종 계약서+영수증 수령.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="19" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">5-2. 전입신고 & 확정일자 받기</div>
+            <div class="step-detail">
+              입주 즉시 주민센터 방문 또는 <a href="https://www.gov.kr" target="_blank" class="ext-link">정부24</a> 앱에서 전입신고 + 임대차계약서에 <b>확정일자</b> 받기 (대항력 발생, 보증금 법적 보호).
+              <div class="info-box red">⚠️ 전입신고는 입주 당일에 하세요. 늦어지면 보증금 보호 공백 생깁니다.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="20" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">5-3. 대출 월세 자동이체 설정 확인</div>
+            <div class="step-detail">
+              매월 약정일에 대출금에서 집주인 계좌로 월세 자동 입금되는 구조. 첫 달 정상 입금 확인. 은행 앱에서 내역 확인 가능.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-check" data-step="21" onclick="toggleStep(this)"></div>
+          <div class="step-content">
+            <div class="step-title">5-4. 입주 후 체크리스트</div>
+            <div class="step-detail">
+              • <b>사진 촬영</b>: 벽·바닥·가구 하자 있는 부분 전부 기록 (보증금 반환 시 증거)<br>
+              • 보일러·에어컨·세탁기 실제 사용 테스트 / 수도·전기·가스 <b>계량기 사진</b> (이전 세입자 요금과 분리)<br>
+              • <b>도시가스 명의 변경</b> 신청 · <b>인터넷 설치</b> (통신사 신청, 보통 3~5일)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const listings = [
+  {
+    id: 1,
+    source: 'zigbang',
+    sourceLabel: '직방',
+    itemId: '48975991',
+    url: 'https://www.zigbang.com/home/oneroom/items/48975991?item_category=%EC%9B%90%EB%A3%B8&isShare=true&shareUserNo=23928837&stamp=260607202422&share=true',
+    price: '월세 500/40',
+    deposit: 500,
+    monthly: 40,
+    mgmtFee: '5만원',
+    mgmtDetail: '수도, 기타관리비 포함 / 전기,가스,난방,인터넷,TV 별도',
+    size: '27m² (약 8.2평)',
+    sizeM2: 27,
+    type: '오픈형 원룸',
+    floor: '2층 / 4층',
+    moveIn: '2026.06.25 이후',
+    moveInDate: '2026-06-25',
+    parking: '불가',
+    options: '에어컨, 냉장고, 세탁기, 가스레인지 외 2',
+    description: '경희대·영통역 도보 10분 이내',
+    agent: '플러스공인중개사사무소',
+    agentDetail: '수원시 영통구 청명로 19 · 매물 7개',
+    nearby: '편의점1분, 카페2분, 지하철1분',
+    subway: '영통역, 청명역 (수인분당선)',
+    status: 'planned',
+    notes: '6/11(목) 오후 4시 방문 예정'
+  },
+  {
+    id: 2,
+    source: 'zigbang',
+    sourceLabel: '직방',
+    itemId: '49247293',
+    url: 'https://www.zigbang.com/home/oneroom/items/49247293?item_category=%EC%9B%90%EB%A3%B8&isShare=true&shareUserNo=23928837&stamp=260607202728&share=true',
+    price: '월세 500/45',
+    deposit: 500,
+    monthly: 45,
+    mgmtFee: '5만원',
+    mgmtDetail: '일반관리비, 수도 포함 / 전기,가스,난방,인터넷,TV 별도',
+    size: '27m² (약 8.2평)',
+    sizeM2: 27,
+    type: '분리형 원룸',
+    floor: '2층 / 3층',
+    moveIn: '2026.07.22 이후',
+    moveInDate: '2026-07-22',
+    parking: '불가',
+    options: '에어컨, 냉장고, 세탁기, 가스레인지 외 2',
+    description: '경희대 5분, 영통역 5분, 대형마트 앞, 주방분리, 현재 세입자 거주중',
+    agent: '강산공인중개사사무소',
+    agentDetail: '원룸단지 15년차, 영통역·경희대 전문 · 매물 16개',
+    nearby: '버스1분, 카페2분, 편의점2분, 지하철7분',
+    subway: '영통역, 청명역 (수인분당선)',
+    status: 'planned',
+    notes: ''
+  },
+  {
+    id: 3,
+    source: 'zigbang',
+    sourceLabel: '직방',
+    itemId: '49263228',
+    url: 'https://www.zigbang.com/home/oneroom/items/49263228?item_category=%EC%9B%90%EB%A3%B8&isShare=true&shareUserNo=23928837&stamp=260607202309&share=true',
+    price: '월세 500/42',
+    deposit: 500,
+    monthly: 42,
+    mgmtFee: '4만원',
+    mgmtDetail: '일반관리비, 수도 포함 / 전기,가스,난방,인터넷,TV 별도',
+    size: '26.45m² (약 8평)',
+    sizeM2: 26.45,
+    type: '오픈형 원룸',
+    floor: '4층 / 4층',
+    moveIn: '2026.07.14 이후',
+    moveInDate: '2026-07-14',
+    parking: '불가',
+    options: '에어컨, 냉장고, 세탁기, 인덕션 외 2',
+    description: '경희대 7분, 전체 리모델링, 밝고 넓고 쾌적, 통풍 좋음, 세입자 거주중',
+    agent: '강산공인중개사사무소',
+    agentDetail: '원룸단지 15년차, 영통역·경희대 전문 · 매물 16개',
+    nearby: '편의점1분, 카페2분, 지하철1분',
+    subway: '영통역, 청명역 (수인분당선)',
+    status: 'planned',
+    notes: ''
+  },
+  {
+    id: 4,
+    source: 'zigbang',
+    sourceLabel: '직방',
+    itemId: '49053668',
+    url: 'https://www.zigbang.com/home/oneroom/items/49053668?item_category=%EC%9B%90%EB%A3%B8&isShare=true&shareUserNo=23928837&stamp=260607202350&share=true',
+    price: '월세 300/44',
+    deposit: 300,
+    monthly: 44,
+    mgmtFee: '6만원',
+    mgmtDetail: '일반관리비, 수도, 기타관리비 포함 / 전기,가스,난방,인터넷,TV 별도',
+    size: '26.45m² (약 8평)',
+    sizeM2: 26.45,
+    type: '오픈형 원룸',
+    floor: '2층 / 3층',
+    moveIn: '즉시 입주 가능',
+    moveInDate: '2026-06-08',
+    parking: '불가',
+    options: '에어컨, 냉장고, 세탁기, 가스레인지 외 2',
+    description: '영통역·경희대 도보 10분, 방 넓음, 전입신고 가능',
+    agent: '삼성공인중개사사무소',
+    agentDetail: '영통역·우편집중국 주변 투룸 다수 보유 · 매물 19개',
+    nearby: '카페1분, 편의점2분, 대형마트3분, 지하철1분',
+    subway: '영통역, 청명역 (수인분당선)',
+    status: 'planned',
+    notes: ''
+  },
+  {
+    id: 5,
+    source: 'eta',
+    sourceLabel: '에타',
+    itemId: '',
+    url: '',
+    price: '월세 300/45',
+    deposit: 300,
+    monthly: 45,
+    mgmtFee: '관리비 포함',
+    mgmtDetail: '월세에 관리비 포함, 인터넷 가능',
+    size: '9평 (약 29.7m²)',
+    sizeM2: 29.7,
+    type: '정보 부족',
+    floor: '정보 없음',
+    moveIn: '2026.06.15부터 즉시 입주',
+    moveInDate: '2026-06-15',
+    parking: '정보 없음',
+    options: '침대, 책상, 행거, 빨렛대, 수납장, 전신거울(옵션)',
+    description: '베란다 따로 있음, 인터넷 가능',
+    agent: '에브리타임 직거래',
+    agentDetail: '직거래 (중개사 없음)',
+    nearby: '정보 없음',
+    subway: '정보 없음',
+    status: 'planned',
+    notes: ''
+  }
+];
+
+function saveState() {
+  const state = listings.map(l => ({ id: l.id, status: l.status, notes: l.notes }));
+  localStorage.setItem('room-hunting-state', JSON.stringify(state));
+}
+
+function loadState() {
+  const saved = localStorage.getItem('room-hunting-state');
+  if (!saved) return;
+  try {
+    const state = JSON.parse(saved);
+    state.forEach(s => {
+      const listing = listings.find(l => l.id === s.id);
+      if (listing) { listing.status = s.status; listing.notes = s.notes; }
+    });
+  } catch (e) {}
+}
+
+function updateSummary() {
+  document.getElementById('totalCount').textContent = listings.length;
+  document.getElementById('plannedCount').textContent = listings.filter(l => l.status === 'planned').length;
+  document.getElementById('visitedCount').textContent = listings.filter(l => l.status === 'visited').length;
+  document.getElementById('pickedCount').textContent = listings.filter(l => l.status === 'picked').length;
+  document.getElementById('rejectedCount').textContent = listings.filter(l => l.status === 'rejected').length;
+}
+
+function getStatusLabel(status) {
+  const map = { planned: '방문 예정', visited: '방문 완료', picked: '최종 선택', rejected: '탈락' };
+  return map[status] || status;
+}
+
+function getStatusClass(status) {
+  const map = { planned: 'visit-planned', visited: 'visit-done', picked: 'active', rejected: 'rejected' };
+  return (map[status] || '') + ' btn-status';
+}
+
+function cycleStatus(listing) {
+  const order = ['planned', 'visited', 'rejected', 'planned'];
+  listing.status = order[(order.indexOf(listing.status) + 1) % order.length];
+  saveState();
+  renderAll();
+}
+
+function togglePick(listing) {
+  listing.status = listing.status === 'picked' ? 'visited' : 'picked';
+  saveState();
+  renderAll();
+}
+
+function updateNotes(listing, notes) {
+  listing.notes = notes;
+  saveState();
+}
+
+function renderCards() {
+  const grid = document.getElementById('cardGrid');
+  grid.innerHTML = listings.map(l => {
+    const isPicked = l.status === 'picked';
+    const sourceBadge = l.source === 'zigbang'
+      ? '<span class="badge badge-zigbang">직방</span>'
+      : '<span class="badge badge-eta">에타</span>';
+    const statusBtnClass = getStatusClass(l.status);
+    const statusLabel = getStatusLabel(l.status);
+
+    return `
+    <div class="card ${isPicked ? 'picked' : ''}">
+      <div class="card-header">
+        <div class="title-area">
+          <h2>#${l.id} ${l.price} ${sourceBadge} ${l.url ? `<a href="${l.url}" target="_blank" class="link-btn" style="font-size:0.7rem;padding:2px 7px;">🔗 직방</a>` : ''}</h2>
+          <div class="subtitle">${l.description} · ${l.agent}</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="price">${l.price} <small>관리비 ${l.mgmtFee}</small></div>
+        <div class="info-row">
+          <span class="tag highlight">${l.type}</span>
+          <span class="tag">${l.size}</span>
+          <span class="tag">${l.floor}</span>
+        </div>
+        <div class="detail-list">
+          <div class="dl-item"><span class="dl-label">관리비</span><span class="dl-value">${l.mgmtDetail}</span></div>
+          <div class="dl-item"><span class="dl-label">입주 가능</span><span class="dl-value">${l.moveIn}</span></div>
+          <div class="dl-item"><span class="dl-label">옵션</span><span class="dl-value">${l.options}</span></div>
+          <div class="dl-item"><span class="dl-label">위치</span><span class="dl-value">수원시 영통구 영통동</span></div>
+          <div class="dl-item"><span class="dl-label">주변</span><span class="dl-value">${l.nearby}</span></div>
+          <div class="dl-item"><span class="dl-label">지하철</span><span class="dl-value">${l.subway}</span></div>
+          <div class="dl-item"><span class="dl-label">중개사</span><span class="dl-value" style="font-size:0.78rem;">${l.agentDetail}</span></div>
+          <div class="dl-item"><span class="dl-label">대출</span><span class="dl-value" style="color:var(--green);">금액·면적 통과 ✅</span></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn ${statusBtnClass}" onclick="cycleStatus(listings[${l.id - 1}])">${statusLabel}</button>
+        <button class="btn btn-pick ${isPicked ? 'active' : ''}" onclick="togglePick(listings[${l.id - 1}])">
+          ${isPicked ? '★ 최종 선택' : '☆ 선택'}
+        </button>
+        ${l.url ? `<a href="${l.url}" target="_blank" class="link-btn">직방↗</a>` : '<span style="color:var(--text-dim);font-size:0.78rem;">에타문의</span>'}
+        <textarea class="notes-area" placeholder="메모..." onchange="updateNotes(listings[${l.id - 1}], this.value)">${l.notes}</textarea>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderComparison() {
+  const body = document.getElementById('comparisonBody');
+  const rows = [
+    { label: '보증금/월세', key: 'price' },
+    { label: '월 실부담', render: l => `${l.monthly}만원 + ${l.mgmtFee}` },
+    { label: '관리비', key: 'mgmtFee' },
+    { label: '면적', key: 'size' },
+    { label: '구조', key: 'type' },
+    { label: '층수', key: 'floor' },
+    { label: '입주일', key: 'moveIn' },
+    { label: '옵션', key: 'options' },
+    { label: '지하철', key: 'subway' },
+    { label: '중개사', key: 'agentDetail' },
+    { label: '특징', key: 'description' },
+  ];
+  body.innerHTML = rows.map(row => {
+    const cells = listings.map(l => {
+      let val = row.render ? row.render(l) : (row.key ? l[row.key] : '');
+      return `<td>${val}</td>`;
+    }).join('');
+    return `<tr><td>${row.label}</td>${cells}</tr>`;
+  }).join('');
+}
+
+function copyClause() {
+  const clause = '임대인 또는 임차목적물의 하자로 인해 청년전용 보증부 월세대출이 거절될 경우, 본 계약은 무효로 하며 임대인은 수령한 계약금 전액을 임차인에게 즉시 반환한다.';
+  navigator.clipboard.writeText(clause).then(() => {
+    const btn = document.getElementById('copyClauseBtn');
+    btn.textContent = '✅ 복사 완료';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 특약 문구 복사'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Calendar embed
+function applyCalendar() {
+  const input = document.getElementById('calendarUrlInput');
+  const val = input.value.trim();
+  if (!val) return;
+  // Extract iframe src from full iframe tag, or use as-is
+  let src = val;
+  const match = val.match(/src=["']([^"']+)["']/);
+  if (match) src = match[1];
+  // Build iframe
+  const wrap = document.getElementById('calendarWrap');
+  wrap.innerHTML = `<iframe src="${src.replace(/&/g, '&amp;')}" style="border:0" frameborder="0" scrolling="no"></iframe>`;
+  localStorage.setItem('room-hunting-calendar', src);
+}
+function loadCalendar() {
+  const src = localStorage.getItem('room-hunting-calendar');
+  if (src) {
+    document.getElementById('calendarUrlInput').value = src;
+    const wrap = document.getElementById('calendarWrap');
+    wrap.innerHTML = `<iframe src="${src.replace(/&/g, '&amp;')}" style="border:0" frameborder="0" scrolling="no"></iframe>`;
+  }
+}
+function clearCalendar() {
+  localStorage.removeItem('room-hunting-calendar');
+  document.getElementById('calendarUrlInput').value = 'https://calendar.google.com/calendar/embed?src=jsmjsm030804%40gmail.com&ctz=Asia%2FSeoul';
+  const wrap = document.getElementById('calendarWrap');
+  wrap.innerHTML = '<iframe src="https://calendar.google.com/calendar/embed?src=jsmjsm030804%40gmail.com&ctz=Asia%2FSeoul" style="border:0" frameborder="0" scrolling="no"></iframe>';
+}
+
+// Timeline
+function saveTimelineState() {
+  const steps = document.querySelectorAll('.step-check');
+  const state = {};
+  steps.forEach(el => { state[el.dataset.step] = el.classList.contains('done'); });
+  localStorage.setItem('room-hunting-timeline', JSON.stringify(state));
+  const phases = document.querySelectorAll('.phase');
+  const phaseState = [];
+  phases.forEach(p => phaseState.push(p.classList.contains('expanded')));
+  localStorage.setItem('room-hunting-phases', JSON.stringify(phaseState));
+}
+
+function loadTimelineState() {
+  const saved = localStorage.getItem('room-hunting-timeline');
+  if (saved) {
+    try {
+      const state = JSON.parse(saved);
+      document.querySelectorAll('.step-check').forEach(el => {
+        if (state[el.dataset.step]) el.classList.add('done');
+      });
+    } catch (e) {}
+  }
+  const phasesSaved = localStorage.getItem('room-hunting-phases');
+  if (phasesSaved) {
+    try {
+      const phaseState = JSON.parse(phasesSaved);
+      document.querySelectorAll('.phase').forEach((p, i) => {
+        if (!phaseState[i]) p.classList.remove('expanded');
+      });
+    } catch (e) {}
+  }
+  updateProgress();
+}
+
+function toggleStep(el) { el.classList.toggle('done'); updateProgress(); saveTimelineState(); }
+
+function togglePhase(headerEl) {
+  headerEl.parentElement.classList.toggle('expanded');
+  saveTimelineState();
+}
+
+function updateProgress() {
+  const steps = document.querySelectorAll('.step-check');
+  const done = document.querySelectorAll('.step-check.done').length;
+  const total = steps.length;
+  const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done + ' / ' + total + ' 단계 완료';
+  document.getElementById('progressPercent').textContent = pct + '%';
+}
+
+function renderAll() { renderCards(); updateSummary(); }
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadState(); renderAll(); renderComparison(); loadCalendar(); loadTimelineState();
+});
+</script>
+</body>
+</html>

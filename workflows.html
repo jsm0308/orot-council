@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki -- 워크플로우</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v3</span></div>
+  <div class="nav-top">
+    <a href="index.html">시스템 개요</a>
+    <a href="workflows.html" class="active">워크플로우</a>
+    <a href="usage.html">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>핵심 워크플로우 (v3)</h1>
+  <p class="subtitle">
+    6개의 핵심 작업. 모두 한국어 자연어로 트리거된다.
+  </p>
+
+  <hr>
+
+  <div class="card workflow">
+    <div class="card-header">
+      Ingest (문서 주입)
+      <span class="tag accent" style="margin-left: 8px;">"읽어서 위키에 반영해줘"</span>
+    </div>
+    <div class="card-body">
+      <p>소스 문서를 읽고 핵심 내용을 추출한다. <code>raw/</code> 디렉토리 또는 <code>2_Sources/</code>에서 선택. 소스 하나당 보통 <strong>5~15페이지</strong>를 수정하며 prose 관계와 모순 탐지도 함께 수행.</p>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><span style="font-size: 13px; color: #6b7280;">소스 읽기 (PDF, DOCX, PPTX, HTML, TXT)</span></div>
+        <div class="step"><span class="step-num">2</span><span style="font-size: 13px; color: #6b7280;">요약 + kind/topics/subject 결정 + 사용자 확인</span></div>
+        <div class="step"><span class="step-num">3</span><span style="font-size: 13px; color: #6b7280;">source-record 페이지 생성</span></div>
+        <div class="step"><span class="step-num">4</span><span style="font-size: 13px; color: #6b7280;">concept/entity 페이지 업데이트 + prose 관계</span></div>
+        <div class="step"><span class="step-num">5</span><span style="font-size: 13px; color: #6b7280;">모순 탐지 + index.md + log.md 갱신</span></div>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: #6b7280;">v3 신규: 소스는 source-record로 저장, concept과 명확히 구분. prose 관계 자동 생성.</p>
+    </div>
+  </div>
+
+  <div class="card workflow">
+    <div class="card-header">
+      Save (저장)
+      <span class="tag accent" style="margin-left: 8px;">"저장해줘"</span>
+    </div>
+    <div class="card-body">
+      <p>현재 대화 응답을 위키 페이지로 저장. kind/form/subject/topics/source-types를 LLM이 자동 분류하고 prose 관계를 추가한다.</p>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><span style="font-size: 13px; color: #6b7280;">kind + form + topics + subject 자동 분류</span></div>
+        <div class="step"><span class="step-num">2</span><span style="font-size: 13px; color: #6b7280;">v3 프론트매터 생성</span></div>
+        <div class="step"><span class="step-num">3</span><span style="font-size: 13px; color: #6b7280;">prose 관계 추천 (builds on [[x]])</span></div>
+        <div class="step"><span class="step-num">4</span><span style="font-size: 13px; color: #6b7280;">index.md + log.md 갱신</span></div>
+      </div>
+      <p style="margin-top: 8px; font-size: 12px; color: #6b7280;">v2 -> v3: related 필드 제거, prose 관계로 대체. source_count -> source-types.</p>
+    </div>
+  </div>
+
+  <div class="card workflow">
+    <div class="card-header">
+      Synapse (결정 페이지) -- <span class="tag purple">신규</span>
+      <span class="tag accent" style="margin-left: 8px;">"결정 기록해줘" "/synapse"</span>
+    </div>
+    <div class="card-body">
+      <p>대화형으로 결정 페이지 작성을 유도. 13개 섹션을 하나씩 물어보며, 빈 섹션은 자동 삭제. kind=decision으로 저장.</p>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><span style="font-size: 13px; color: #6b7280;">Context -- 배경 질문</span></div>
+        <div class="step"><span class="step-num">2</span><span style="font-size: 13px; color: #6b7280;">Problem -> Decision -> Alternatives</span></div>
+        <div class="step"><span class="step-num">3</span><span style="font-size: 13px; color: #6b7280;">Rationale -> Mechanism -> Outcome</span></div>
+        <div class="step"><span class="step-num">4</span><span style="font-size: 13px; color: #6b7280;">Failure mode -> Iteration -> Invariant</span></div>
+        <div class="step"><span class="step-num">5</span><span style="font-size: 13px; color: #6b7280;">Reusability -> Related -> Next action</span></div>
+        <div class="step"><span class="step-num">6</span><span style="font-size: 13px; color: #6b7280;">decision-YYYY-MM-DD-slug.md로 저장 + prose 관계</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card workflow">
+    <div class="card-header">
+      Search / Query (검색 + 질문)
+      <span class="tag accent" style="margin-left: 8px;">"검색해줘 &lt;검색어&gt;"</span>
+    </div>
+    <div class="card-body">
+      <p>qmd + 벡터 검색으로 위키를 검색. 관련 페이지를 찾아 응답에 포함시키고 <code>[[링크]]</code>로 인용. 응답 후 저장 제안.</p>
+    </div>
+  </div>
+
+  <div class="card workflow">
+    <div class="card-header">
+      Lint (건강검진) -- <span style="color:#d97706;">수동 실행</span>
+      <span class="tag accent" style="margin-left: 8px;">"점검해줘"</span>
+    </div>
+    <div class="card-body">
+      <p>9종 검사 수행. <strong>자동 실행되지 않음</strong>. 리포트 저장 + manifest/dependencies 자동 갱신.</p>
+      <p style="margin-top: 8px; font-size: 12px; color: #6b7280;">v3 신규: schema validation, domains cache, subject path, topic vocabulary, prose 관계 검증.</p>
+    </div>
+  </div>
+
+  <div class="card workflow">
+    <div class="card-header">
+      Promote (아카이브 이전)
+      <span class="tag accent" style="margin-left: 8px;">"마이그레이션해줘"</span>
+    </div>
+    <div class="card-body">
+      <p>v2 아카이브를 v3 위키로 승격. <code>scripts/migrate-v2-to-v3.py</code> 스크립트 실행. category->kind, tags->topics+subject, related->prose 관계 변환.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>Lint 검사 항목 (9종)</h2>
+  <p style="color: #6b7280; margin-bottom: 16px;">20회 이상 인제스트했거나 1주 이상 지났으면 실행을 권장한다.</p>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-header">Schema Validation <span class="tag new">신규</span></div>
+      <div class="card-body" style="color: #6b7280;">kind, form, source-types, confidence 값이 유효한지 확인.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Domains Cache <span class="tag new">신규</span></div>
+      <div class="card-body" style="color: #6b7280;">domains 필드가 subject 최상위와 일치하는지 확인.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Subject Path <span class="tag new">신규</span></div>
+      <div class="card-body" style="color: #6b7280;">subject 경로가 subject-tree.md에 존재하는지 확인.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">모순 탐지</div>
+      <div class="card-body" style="color: #6b7280;">서로 다른 페이지에서 상충되는 주장 확인.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">오래된 페이지</div>
+      <div class="card-body" style="color: #6b7280;">updated가 90일 이상 지난 페이지.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">고립 페이지</div>
+      <div class="card-body" style="color: #6b7280;">다른 페이지에서 링크되지 않은 페이지.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">Topic Vocabulary <span class="tag new">신규</span></div>
+      <div class="card-body" style="color: #6b7280;">topics.md에 없는 unfamiliar 키워드 경고.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">누락된 링크</div>
+      <div class="card-body" style="color: #6b7280;">연결되어야 하지만 링크가 없는 페이지 쌍.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">데이터 공백</div>
+      <div class="card-body" style="color: #6b7280;">추가 증거가 필요한 주장.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    마지막 수정: 2026-06-08.
+  </div>
+
+</div>
+
+<script>
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  var isOpen = menu.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) { menu.classList.add('open'); }
+}
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown-menu').forEach(function(m) { m.classList.remove('open'); });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) { closeAllDropdowns(); }
+});
+</script>
+</body>
+</html>

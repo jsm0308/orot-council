@@ -1,0 +1,1798 @@
+{
+  "generated": "2026-06-09 07:21",
+  "description": "Auto-generated wikilink and prose relation map.",
+  "relations": [
+    {
+      "from": "200만원-초보-투자-로드맵.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "200만원-초보-투자-로드맵.md",
+      "to": [
+        "적립식-투자와-핵심위성-전략|적립식 투자와 핵심위성 전략"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "200만원-초보-투자-로드맵.md",
+      "to": [
+        "ISA-계좌와-절세-전략|ISA 계좌와 절세"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "200만원-초보-투자-로드맵.md",
+      "to": [
+        "ETF-주요-상품|ETF 주요 상품"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "200만원-초보-투자-로드맵.md",
+      "to": [
+        "ETF-vs-개별주식|ETF vs 개별주식"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "200만원-초보-투자-로드맵.md",
+      "to": [
+        "AI-주식-분석-워크플로우|AI 주식 분석 워크플로우"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "200만원-초보-투자-로드맵.md",
+      "to": [
+        "RICE-프롬프트-구조와-AI-도구-선택-가이드|RICE 프롬프트 구조"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-NotebookLM-학습-플랜-프롬프트-가이드.md",
+      "to": [
+        "[학습 플랜"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-NotebookLM-학습-플랜-프롬프트-가이드.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-NotebookLM-학습-플랜-프롬프트-가이드.md",
+      "to": [
+        "NotebookLM"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-NotebookLM-학습-플랜-프롬프트-가이드.md",
+      "to": [
+        "프롬프트 엔지니어링"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Partial-Function-vs-Partial-Application.md",
+      "to": [
+        "[1-Orchestrator|비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Partial-Function-vs-Partial-Application.md",
+      "to": [
+        "deepdive-coach|딥다이브 코치"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-PyTorch-nn.Sequential-vs-add-module.md",
+      "to": [
+        "[PyTorch 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-PyTorch-nn.Sequential-vs-add-module.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-PyTorch-nn.Sequential-vs-add-module.md",
+      "to": [
+        "신경망 모듈"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-PyTorch-nn.Sequential-vs-add-module.md",
+      "to": [
+        "nn.Module"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Python-Optional-타입-힌트와-선택적-인자.md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Python-Optional-타입-힌트와-선택적-인자.md",
+      "to": [
+        "Python 타입 힌트"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Python-Optional-타입-힌트와-선택적-인자.md",
+      "to": [
+        "Python 함수"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Python-enumerate-함수-정리.md",
+      "to": [
+        "[Python 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Python-enumerate-함수-정리.md",
+      "to": [
+        "파이썬 반복문"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-Python-enumerate-함수-정리.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-VIT-코드-학습-전략-블랙박스-분해.md",
+      "to": [
+        "[1-Orchestrator|비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-VIT-코드-학습-전략-블랙박스-분해.md",
+      "to": [
+        "deepdive-coach|딥다이브 코치"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-VIT-코드-학습-전략-블랙박스-분해.md",
+      "to": [
+        "metacognition-coach|메타인지 코치"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-partial-함수-개념-정리.md",
+      "to": [
+        "[1-Orchestrator|비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-partial-함수-개념-정리.md",
+      "to": [
+        "deepdive-coach|딥다이브 코치"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-partial-함수-개념과-활용.md",
+      "to": [
+        "[1-Orchestrator|비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-partial-함수-개념과-활용.md",
+      "to": [
+        "deepdive-coach|딥다이브 코치"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-파이썬-NoneType-개념-정리.md",
+      "to": [
+        "[파이썬 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-파이썬-NoneType-개념-정리.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-05-31-파이썬-NoneType-개념-정리.md",
+      "to": [
+        "파이썬 데이터 타입"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-6월-운동-루틴-일정-생성.md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-6월-운동-루틴-일정-생성.md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-6월-운동-루틴-일정-생성.md",
+      "to": [
+        "헬스 일정"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서-저장-정책-업데이트.md",
+      "to": [
+        "[0-System-Overview|시스템 개요"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서-저장-정책-업데이트.md",
+      "to": [
+        "1-Orchestrator|비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서-저장-정책-협의-및-업데이트.md",
+      "to": [
+        "[AI 비서 사용법"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서-저장-정책-협의-및-업데이트.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서-저장-정책-협의-및-업데이트.md",
+      "to": [
+        "개인 아카이브 규칙"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-대화-기록-처리-방식.md",
+      "to": [
+        "[AI 비서 작동 원리"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-대화-기록-처리-방식.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-대화-기록-처리-방식.md",
+      "to": [
+        "대화 맥락 유지"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-대화-기록-처리-방식.md",
+      "to": [
+        "작업 기억"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-저장-기능-오해-해소.md",
+      "to": [
+        "[AI 비서 사용법"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-저장-기능-오해-해소.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-저장-기능-오해-해소.md",
+      "to": [
+        "개인 아카이브 규칙"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-저장-기능-한계.md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-저장-기능-한계.md",
+      "to": [
+        "데이터 저장 정책"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-저장-기능-한계.md",
+      "to": [
+        "AI 비서 기능"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-휘발성과-기록-전략.md",
+      "to": [
+        "[작업 기억"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-휘발성과-기록-전략.md",
+      "to": [
+        "AI 비서 작동 원리"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-휘발성과-기록-전략.md",
+      "to": [
+        "지식 관리 시스템"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-휘발성과-기록-전략.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-비서의-휘발성과-기록-전략.md",
+      "to": [
+        "대화 맥락 유지"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-웹-서치의-한계와-할루시네이션.md",
+      "to": [
+        "[AI 한계"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-웹-서치의-한계와-할루시네이션.md",
+      "to": [
+        "웹 서치"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-웹-서치의-한계와-할루시네이션.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-웹-서치의-한계와-할루시네이션.md",
+      "to": [
+        "할루시네이션"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-추론-금지-원칙-및-메모-확인.md",
+      "to": [
+        "[대화 기록 관리"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-추론-금지-원칙-및-메모-확인.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-추론-금지-원칙-및-메모-확인.md",
+      "to": [
+        "AI 사용 원칙"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-추론-금지-원칙-및-메모-확인.md",
+      "to": [
+        "할루시네이션 방지"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-코치의-운동-전문성-범위.md",
+      "to": [
+        "[Push Pull Legs"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-코치의-운동-전문성-범위.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-코치의-운동-전문성-범위.md",
+      "to": [
+        "운동 루틴 설계"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-AI-코치의-운동-전문성-범위.md",
+      "to": [
+        "근비대 훈련"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-LLM-위키-및-참고-사이트-정리.md",
+      "to": [
+        "[LLM 학습 자료"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-LLM-위키-및-참고-사이트-정리.md",
+      "to": [
+        "Lilian Weng"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-LLM-위키-및-참고-사이트-정리.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-LLM-위키-및-참고-사이트-정리.md",
+      "to": [
+        "Hugging Face"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-골반-비대칭-교정-루틴-조정.md",
+      "to": [
+        "[둔근 활성화"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-골반-비대칭-교정-루틴-조정.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-골반-비대칭-교정-루틴-조정.md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-골반-비대칭-교정-루틴-조정.md",
+      "to": [
+        "골반 비대칭 교정"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-근비대+축구-퍼포먼스-루틴.md",
+      "to": [
+        "[골반 비대칭 교정 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-근비대+축구-퍼포먼스-루틴.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-근비대+축구-퍼포먼스-루틴.md",
+      "to": [
+        "2분할 상하체"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-근비대+축구-퍼포먼스-루틴.md",
+      "to": [
+        "축구 선수 헬스"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-논문-요약-코치-전달-템플릿.md",
+      "to": [
+        "[헬스 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-논문-요약-코치-전달-템플릿.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-논문-요약-코치-전달-템플릿.md",
+      "to": [
+        "축구 퍼포먼스"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-논문-요약-코치-전달-템플릿.md",
+      "to": [
+        "근비대 훈련"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-로컬-JSON-캘린더-시스템-분석.md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-로컬-JSON-캘린더-시스템-분석.md",
+      "to": [
+        "자동화 도구"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-로컬-JSON-캘린더-시스템-분석.md",
+      "to": [
+        "로컬 캘린더 시스템"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-로컬-JSON-캘린더-시스템-분석.md",
+      "to": [
+        "JSON 기반 데이터 저장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-비대칭-교정-운동-루틴-분석.md",
+      "to": [
+        "[비대칭 교정"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-비대칭-교정-운동-루틴-분석.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-비대칭-교정-운동-루틴-분석.md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-비대칭-교정-운동-루틴-분석.md",
+      "to": [
+        "언ilateral 운동"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-완전체-최종-주간-운동-루틴.md",
+      "to": [
+        "[축구 훈련"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-완전체-최종-주간-운동-루틴.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-완전체-최종-주간-운동-루틴.md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-완전체-최종-주간-운동-루틴.md",
+      "to": [
+        "골반 교정"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-논문-활용-및-코치-시스템-연동-방법.md",
+      "to": [
+        "[헬스 코치 활용법"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-논문-활용-및-코치-시스템-연동-방법.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-논문-활용-및-코치-시스템-연동-방법.md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-논문-활용-및-코치-시스템-연동-방법.md",
+      "to": [
+        "RM 기반 중량 설정"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-루틴-캘린더-저장-방법.md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-루틴-캘린더-저장-방법.md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-루틴-캘린더-저장-방법.md",
+      "to": [
+        "캘린더 활용법"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-코치-호출-시스템-설명.md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-코치-호출-시스템-설명.md",
+      "to": [
+        "AI 역할 분담"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-운동-코치-호출-시스템-설명.md",
+      "to": [
+        "운동 코치 시스템"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-주4회-2분할-상체-루틴-(어깨·팔-약점-보완).md",
+      "to": [
+        "[2분할"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-주4회-2분할-상체-루틴-(어깨·팔-약점-보완).md",
+      "to": [
+        "축구 병행"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-주4회-2분할-상체-루틴-(어깨·팔-약점-보완).md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-주4회-2분할-상체-루틴-(어깨·팔-약점-보완).md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-주간-운동-루틴-(2026-06-01-기준).md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-주간-운동-루틴-(2026-06-01-기준).md",
+      "to": [
+        "운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-주간-운동-루틴-(2026-06-01-기준).md",
+      "to": [
+        "골반 교정"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-총-보수-342만원-계산-내역.md",
+      "to": [
+        "[파트타임 수입"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-총-보수-342만원-계산-내역.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-총-보수-342만원-계산-내역.md",
+      "to": [
+        "근무 일정"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-총-보수-342만원-계산-내역.md",
+      "to": [
+        "급여 계산"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-코치의-데이터-저장-정책-설명.md",
+      "to": [
+        "[헬스 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-코치의-데이터-저장-정책-설명.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-코치의-데이터-저장-정책-설명.md",
+      "to": [
+        "축구 퍼포먼스"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-코치의-데이터-저장-정책-설명.md",
+      "to": [
+        "근비대 훈련"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-루틴-재구성-질문-템플릿.md",
+      "to": [
+        "[비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-루틴-재구성-질문-템플릿.md",
+      "to": [
+        "운동 루틴 템플릿"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-루틴-재구성-질문-템플릿.md",
+      "to": [
+        "헬스 코치 아카이브"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-루틴-재설정-방법.md",
+      "to": [
+        "[운동 분할법"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-루틴-재설정-방법.md",
+      "to": [
+        "헬스 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-루틴-재설정-방법.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-루틴-재설정-방법.md",
+      "to": [
+        "근비대"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-목적별-루틴-및-분할법.md",
+      "to": [
+        "[3분할 운동법"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-목적별-루틴-및-분할법.md",
+      "to": [
+        "헬스 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-목적별-루틴-및-분할법.md",
+      "to": [
+        "비서장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "2026-06-01-헬스-목적별-루틴-및-분할법.md",
+      "to": [
+        "근비대 훈련"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "6개월-투자-커리큘럼-Karpathy-Top-Down.md",
+      "to": [
+        "경제-투자-주간-루틴-3트랙-시스템|주간 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "6개월-투자-커리큘럼-Karpathy-Top-Down.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "6개월-투자-커리큘럼-Karpathy-Top-Down.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "A2XP.md",
+      "to": [
+        "Domain-Generalization|Domain Generalization"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "A2XP.md",
+      "to": [
+        "Visual-Prompting|Visual Prompting"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "A2XP.md",
+      "to": [
+        "Cross-Attention|Cross Attention"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "A2XP.md",
+      "to": [
+        "DAM-VP|DAM-VP"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "AI-주식-분석-워크플로우.md",
+      "to": [
+        "RICE-프롬프트-구조와-AI-도구-선택-가이드|RICE 프롬프트 구조"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "AI-주식-분석-워크플로우.md",
+      "to": [
+        "DuPont-분석과-ROE-분해|DuPont 분석"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "AI-주식-분석-워크플로우.md",
+      "to": [
+        "경제적-해자-Moat-분석|경제적 해자 분석"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "AI-주식-분석-워크플로우.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "AI-주식-분석-워크플로우.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Decision-Transformer.md",
+      "to": [
+        "Offline-RL|Offline RL"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Decision-Transformer.md",
+      "to": [
+        "Sequence-Modeling-for-RL|Sequence Modeling for RL"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Decision-Transformer.md",
+      "to": [
+        "Credit-Assignment|Credit Assignment"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Domain-Generalization.md",
+      "to": [
+        "A2XP|A2XP"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Domain-Generalization.md",
+      "to": [
+        "Domain-Adaptation|Domain Adaptation"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Domain-Generalization.md",
+      "to": [
+        "Visual-Prompting|Visual Prompting"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "DuPont-분석과-ROE-분해.md",
+      "to": [
+        "AI-주식-분석-워크플로우|AI 주식 분석 워크플로우"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "DuPont-분석과-ROE-분해.md",
+      "to": [
+        "RICE-프롬프트-구조와-AI-도구-선택-가이드|RICE 프롬프트 구조"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "DuPont-분석과-ROE-분해.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-vs-개별주식.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-vs-개별주식.md",
+      "to": [
+        "분산-투자의-원리|분산 투자의 원리"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-vs-개별주식.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-기초.md",
+      "to": [
+        "적립식-투자와-핵심위성-전략|적립식 투자와 핵심위성 전략"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-기초.md",
+      "to": [
+        "ETF-주요-상품|ETF 주요 상품"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-기초.md",
+      "to": [
+        "ETF-vs-개별주식|ETF vs 개별주식"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-기초.md",
+      "to": [
+        "ISA-계좌와-절세-전략|ISA 계좌와 절세"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-주요-상품.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-주요-상품.md",
+      "to": [
+        "적립식-투자와-핵심위성-전략|적립식 투자와 핵심위성 전략"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-주요-상품.md",
+      "to": [
+        "S&P500-지수|S&P500 지수"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ETF-주요-상품.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Embodied-Language-Models.md",
+      "to": [
+        "PaLM-E-2023|PaLM-E"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Embodied-Language-Models.md",
+      "to": [
+        "RT-2-2023|RT-2"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Embodied-Language-Models.md",
+      "to": [
+        "Vision-Language-Action-Models|VLA Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ISA-계좌와-절세-전략.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ISA-계좌와-절세-전략.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ISA-계좌와-절세-전략.md",
+      "to": [
+        "ETF-주요-상품|ETF 주요 상품"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Mamba-QnA-2026-06-08.md",
+      "to": [
+        "Mamba|Mamba"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Mamba-QnA-2026-06-08.md",
+      "to": [
+        "State-Space-Models|State Space Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Mamba-QnA-2026-06-08.md",
+      "to": [
+        "Selection-Mechanism|Selection Mechanism"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Mamba-QnA-2026-06-08.md",
+      "to": [
+        "논문-영단어장|논문 영단어장"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Mamba.md",
+      "to": [
+        "State-Space-Models|State Space Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Mamba.md",
+      "to": [
+        "Selection-Mechanism|Selection Mechanism"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Mamba.md",
+      "to": [
+        "Decision-Transformer|Decision Transformer"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Medisod-Column.md",
+      "to": [
+        "인지과학-기반-학습-연구-최적화|인지과학 기반 학습·연구 최적화"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Offline-RL.md",
+      "to": [
+        "Decision-Transformer|Decision Transformer"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Offline-RL.md",
+      "to": [
+        "Sequence-Modeling-for-RL|Sequence Modeling for RL"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "OpenVLA.md",
+      "to": [
+        "RT-2-2023|RT-2"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "OpenVLA.md",
+      "to": [
+        "Vision-Language-Action-Models|VLA Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "OpenVLA.md",
+      "to": [
+        "Parameter-Efficient-Fine-Tuning|Parameter Efficient Fine-Tuning"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "PaLM-E.md",
+      "to": [
+        "OpenVLA|OpenVLA"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "PaLM-E.md",
+      "to": [
+        "RT-2-2023|RT-2"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "PaLM-E.md",
+      "to": [
+        "Vision-Language-Action-Models|VLA Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "PaLM-E.md",
+      "to": [
+        "Embodied-Language-Models|Embodied Language Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "PerAct.md",
+      "to": [
+        "Behavior-Cloning|Behavior Cloning"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "PerAct.md",
+      "to": [
+        "Voxel-Action-Space|Voxel Action Space"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "PerAct.md",
+      "to": [
+        "Language-Grounded-Manipulation|Language Grounded Manipulation"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RICE-프롬프트-구조와-AI-도구-선택-가이드.md",
+      "to": [
+        "AI-주식-분석-워크플로우|AI 주식 분석 워크플로우"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RICE-프롬프트-구조와-AI-도구-선택-가이드.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RICE-프롬프트-구조와-AI-도구-선택-가이드.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RT-1.md",
+      "to": [
+        "RT-2|RT-2"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RT-1.md",
+      "to": [
+        "OpenVLA|OpenVLA"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RT-1.md",
+      "to": [
+        "Vision-Language-Action-Models|VLA Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RT-2.md",
+      "to": [
+        "RT-1-2022|RT-1"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RT-2.md",
+      "to": [
+        "OpenVLA|OpenVLA"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RT-2.md",
+      "to": [
+        "PaLM-E-2023|PaLM-E"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "RT-2.md",
+      "to": [
+        "Vision-Language-Action-Models|VLA Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "S&P500-지수.md",
+      "to": [
+        "ETF-주요-상품|ETF 주요 상품"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "S&P500-지수.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "S&P500-지수.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Selection-Mechanism.md",
+      "to": [
+        "Mamba|Mamba"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Selection-Mechanism.md",
+      "to": [
+        "State-Space-Models|State Space Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Sequence-Modeling-for-RL.md",
+      "to": [
+        "Decision-Transformer|Decision Transformer"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Sequence-Modeling-for-RL.md",
+      "to": [
+        "Offline-RL|Offline RL"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Sequence-Modeling-for-RL.md",
+      "to": [
+        "Credit-Assignment|Credit Assignment"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "State-Space-Models.md",
+      "to": [
+        "Mamba|Mamba"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "State-Space-Models.md",
+      "to": [
+        "Selection-Mechanism|Selection Mechanism"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "State-Space-Models.md",
+      "to": [
+        "Sequence-Modeling-for-RL|Sequence Modeling for RL"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "VC-1.md",
+      "to": [
+        "Pre-trained-Visual-Representations|Pre-trained Visual Representations"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "VIMA.md",
+      "to": [
+        "PerAct|PerAct"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "VIMA.md",
+      "to": [
+        "Vision-Language-Action-Models|VLA Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "VIMA.md",
+      "to": [
+        "RT-2-2023|RT-2"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ViT.md",
+      "to": [
+        "Visual-Prompting|Visual Prompting"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ViT.md",
+      "to": [
+        "Mamba|Mamba"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "ViT.md",
+      "to": [
+        "A2XP|A2XP"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Vision-Language-Action-Models.md",
+      "to": [
+        "OpenVLA|OpenVLA"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Vision-Language-Action-Models.md",
+      "to": [
+        "RT-2-2023|RT-2"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Vision-Language-Action-Models.md",
+      "to": [
+        "RT-1-2022|RT-1"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Vision-Language-Action-Models.md",
+      "to": [
+        "PaLM-E-2023|PaLM-E"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Visual-Prompting.md",
+      "to": [
+        "A2XP|A2XP"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Visual-Prompting.md",
+      "to": [
+        "DAM-VP|DAM-VP"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Visual-Prompting.md",
+      "to": [
+        "Domain-Generalization|Domain Generalization"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "Visual-Prompting.md",
+      "to": [
+        "Adversarial-Reprogramming|Adversarial Reprogramming"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "pi0.md",
+      "to": [
+        "OpenVLA|OpenVLA"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "pi0.md",
+      "to": [
+        "RT-2-2023|RT-2"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "pi0.md",
+      "to": [
+        "Vision-Language-Action-Models|VLA Models"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "pi0.md",
+      "to": [
+        "Flow-Matching|Flow Matching"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-입문-에이전트-주도-커리큘럼.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-입문-에이전트-주도-커리큘럼.md",
+      "to": [
+        "경제-투자-주간-루틴-3트랙-시스템|주간 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-입문-에이전트-주도-커리큘럼.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-입문-에이전트-주도-커리큘럼.md",
+      "to": [
+        "적립식-투자와-핵심위성-전략|적립식 투자와 핵심위성 전략"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-입문-에이전트-주도-커리큘럼.md",
+      "to": [
+        "ISA-계좌와-절세-전략|ISA 계좌와 절세"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-주간-루틴-3트랙-시스템.md",
+      "to": [
+        "경제-투자-입문-에이전트-주도-커리큘럼|입문 커리큘럼"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-주간-루틴-3트랙-시스템.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-주간-루틴-3트랙-시스템.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제-투자-주간-루틴-3트랙-시스템.md",
+      "to": [
+        "ISA-계좌와-절세-전략|ISA 계좌와 절세"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제적-해자-Moat-분석.md",
+      "to": [
+        "DuPont-분석과-ROE-분해|DuPont 분석과 ROE 분해"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제적-해자-Moat-분석.md",
+      "to": [
+        "AI-주식-분석-워크플로우|AI 주식 분석 워크플로우"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "경제적-해자-Moat-분석.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "국내상장-vs-해외직구-ETF.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "국내상장-vs-해외직구-ETF.md",
+      "to": [
+        "ISA-계좌와-절세-전략|ISA 계좌와 절세"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "국내상장-vs-해외직구-ETF.md",
+      "to": [
+        "S&P500-지수|S&P500 지수"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "국내상장-vs-해외직구-ETF.md",
+      "to": [
+        "ETF-주요-상품|ETF 주요 상품"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "논문-영단어장.md",
+      "to": [
+        "Mamba|Mamba"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "논문-영단어장.md",
+      "to": [
+        "ViT|ViT"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "삶의-최적화-Overview.md",
+      "to": [
+        "2026-06-01-완전체-최종-주간-운동-루틴|운동 루틴"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "삶의-최적화-Overview.md",
+      "to": [
+        "인지과학-기반-학습·연구-최적화|학습 최적화"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "인지과학-기반-학습·연구-최적화.md",
+      "to": [
+        "ViT-코드-분석-학습-플랜|ViT 학습 플랜"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "인지과학-기반-학습·연구-최적화.md",
+      "to": [
+        "2026-06-01-논문-요약-코치-전달-템플릿|논문 요약 템플릿"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "적립식-투자와-핵심위성-전략.md",
+      "to": [
+        "ETF-기초|ETF 기초"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "적립식-투자와-핵심위성-전략.md",
+      "to": [
+        "200만원-초보-투자-로드맵|200만원 초보 투자 로드맵"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "적립식-투자와-핵심위성-전략.md",
+      "to": [
+        "ETF-주요-상품|ETF 주요 상품"
+      ],
+      "type": "builds_on"
+    },
+    {
+      "from": "적립식-투자와-핵심위성-전략.md",
+      "to": [
+        "분산-투자의-원리|분산 투자의 원리"
+      ],
+      "type": "builds_on"
+    }
+  ]
+}

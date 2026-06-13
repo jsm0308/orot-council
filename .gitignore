@@ -1,4 +1,48 @@
-node_modules/
+# Secrets
 .env
+*.env
+credentials*
+*_secret*
+*_api_key*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (local state)
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Raw sources
+raw/
+
+# Cursor config (private)
 .cursor/
-*.pdf
+
+# Memos (personal)
+JSM-memo.md
+*.memo.txt
+
+# Logs
+*.log
+output.log
+
+# Node (if applicable)
+node_modules/

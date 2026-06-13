@@ -1,0 +1,274 @@
+/* JSM Wiki System — Shared Styles */
+* { margin: 0; box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, 'Malgun Gothic', sans-serif;
+  background: #ffffff;
+  color: #1f2937;
+  line-height: 1.7;
+  padding: 0;
+}
+
+/* ── Navbar ── */
+.navbar {
+  background: #111827;
+  padding: 0 32px;
+  display: flex;
+  align-items: flex-start;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 52px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.nav-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  padding: 14px 0;
+  margin-right: 32px;
+}
+.nav-title a { color: #fff; text-decoration: none; }
+.nav-title span {
+  font-size: 10px;
+  background: #2563eb;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ── Top-level links ── */
+.nav-top {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: nowrap;
+  padding: 8px 0;
+}
+.nav-top > a,
+.nav-dropdown-toggle {
+  color: #9ca3af;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+.nav-top > a:hover,
+.nav-dropdown-toggle:hover {
+  color: #e5e7eb;
+  background: rgba(255,255,255,0.06);
+}
+.nav-top > a.active,
+.nav-dropdown-toggle.active {
+  color: #fff;
+  background: #2563eb;
+}
+
+/* ── Dropdown ── */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 6px;
+  min-width: 190px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.nav-dropdown-menu.open {
+  display: block;
+}
+.nav-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d1d5db;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.12s;
+}
+.nav-dropdown-menu a:hover {
+  color: #fff;
+  background: #2563eb;
+}
+.nav-dropdown-menu a.sub-active {
+  color: #fff;
+  background: rgba(37, 99, 235, 0.3);
+}
+.nav-dot {
+  display: inline-block;
+  width: 7px; height: 7px; border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Layout ── */
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 40px 32px 60px;
+}
+
+/* ── Typography ── */
+h1 { font-size: 24px; font-weight: 700; }
+h2 { font-size: 18px; font-weight: 600; margin-top: 36px; margin-bottom: 14px; color: #111827; }
+h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: #1f2937; }
+hr { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+.subtitle { color: #6b7280; margin-top: 4px; font-size: 14px; }
+
+/* ── Tags ── */
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 4px; font-weight: 600;
+  background: #f3f4f6; color: #6b7280;
+}
+.tag.accent { background: #2563eb; color: #fff; }
+.tag.purple { background: #7c3aed; color: #e9d5ff; }
+.tag.green { background: #059669; color: #d1fae5; }
+.tag.yellow { background: #d97706; color: #fef3c7; }
+.tag.base { background: #f3f4f6; color: #6b7280; }
+.tag.new {
+  font-size: 10px; background: #7c3aed; color: #fff;
+  padding: 1px 6px; border-radius: 3px; margin-left: 4px;
+}
+
+/* ── Stats ── */
+.stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px;
+}
+.stat-card {
+  background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 18px;
+}
+.stat-value { font-size: 28px; font-weight: 700; color: #2563eb; }
+.stat-title { font-size: 12px; color: #6b7280; margin-top: 2px; font-weight: 600; }
+.stat-desc { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+
+/* ── Cards ── */
+.card-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.card-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.card {
+  background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
+  overflow: hidden;
+}
+.card-header {
+  padding: 12px 16px; border-bottom: 1px solid #e5e7eb;
+  font-weight: 600; font-size: 13px; background: #f9fafb;
+  display: flex; align-items: center; gap: 8px;
+}
+.card-body { padding: 14px 16px; font-size: 13px; }
+.card-sm .card-header { padding: 10px 14px; }
+.card-sm .card-body { padding: 10px 14px; }
+
+/* ── Link Cards (clickable) ── */
+.link-card {
+  display: block; text-decoration: none; color: inherit;
+  border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.link-card:hover { border-color: #2563eb; box-shadow: 0 2px 8px rgba(37,99,235,0.08); }
+
+/* ── Code ── */
+code {
+  background: #f3f4f6; color: #b91c1c; padding: 2px 6px; border-radius: 4px;
+  font-size: 12px; font-family: 'JetBrains Mono', 'Consolas', 'D2Coding', monospace;
+}
+
+/* ── Callouts ── */
+.callout {
+  padding: 12px 16px; border-radius: 8px; font-size: 13px; margin: 16px 0;
+  border: 1px solid #e5e7eb;
+}
+.callout.info { background: #eff6ff; border-color: #93c5fd; }
+.callout.accent { background: #f5f3ff; border-color: #a78bfa; }
+
+/* ── Quick Reference Table ── */
+.quickref {
+  overflow: hidden; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 13px;
+}
+.quickref-row { display: grid; grid-template-columns: auto auto 1fr; }
+.quickref-row:not(:last-child) { border-bottom: 1px solid #f3f4f6; }
+.quickref-cell { padding: 8px 12px; }
+.quickref-header { font-weight: 600; color: #6b7280; background: #f9fafb; }
+.quickref-even { background: #ffffff; }
+.quickref-odd { background: #f9fafb; }
+
+/* ── Workflow Steps ── */
+.workflow { margin-bottom: 8px; }
+.steps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.step { display: flex; align-items: center; gap: 6px; }
+.step-num {
+  width: 18px; height: 18px; border-radius: 3px; background: #e5e7eb;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #6b7280; flex-shrink: 0;
+}
+
+/* ── Stages ── */
+.stages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+.stage-card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; }
+.stage-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px; border-bottom: 1px solid #e5e7eb; font-size: 13px; font-weight: 600;
+}
+.stage-num {
+  width: 20px; height: 20px; border-radius: 3px; background: #2563eb;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.stage-body { padding: 10px 12px; font-size: 13px; color: #6b7280; }
+
+/* ── Method Cards ── */
+.section-grid { display: grid; gap: 16px; }
+.method-card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; }
+.method-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid #e5e7eb;
+}
+.method-tags { display: flex; gap: 8px; align-items: center; }
+.method-body { padding: 10px 14px; }
+.method-source { font-size: 12px; color: #9ca3af; }
+.method-why { font-size: 13px; margin-top: 8px; line-height: 1.6; color: #374151; }
+
+/* ── Conversation List ── */
+.conversation-list { display: flex; flex-direction: column; gap: 6px; }
+.conversation-item { display: flex; align-items: center; gap: 8px; }
+.conversation-arrow { color: #2563eb; flex-shrink: 0; }
+
+/* ── Command Grid ── */
+.cmds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cmd-group { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; }
+.cmd-item { display: flex; gap: 8px; padding: 5px 14px; font-size: 13px; align-items: center; }
+
+/* ── Coach Cards (2-col) ── */
+.coach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.coach-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.coach-switch { color: #9ca3af; margin-top: 8px; font-size: 12px; }
+
+/* ── Footer ── */
+.footer { text-align: center; font-size: 12px; color: #9ca3af; margin-top: 24px; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .stats, .card-row, .card-row-2, .stages-grid, .cmds-grid, .coach-grid { grid-template-columns: 1fr; }
+  .quickref-row { grid-template-columns: 1fr 1fr; }
+  .container { padding: 24px 16px 40px; }
+  .navbar { padding: 0 12px; }
+  .nav-top > a, .nav-dropdown-toggle { padding: 6px 10px; font-size: 12px; }
+  .nav-title { font-size: 13px; margin-right: 16px; }
+}

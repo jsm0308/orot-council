@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki — Economy</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v2</span></div>
+  <div class="nav-top">
+    <a href="index.html">시스템 개요</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-toggle active" onclick="toggleDropdown(this)">코치 모드 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="research.html"><span class="nav-dot" style="background:#7c3aed;"></span>Research Mentor <span class="tag new">신규</span></a>
+        <a href="study.html"><span class="nav-dot" style="background:#2563eb;"></span>Study</a>
+        <a href="fitness.html"><span class="nav-dot" style="background:#059669;"></span>Fitness</a>
+        <a href="economy.html" class="sub-active"><span class="nav-dot" style="background:#d97706;"></span>Economy</a>
+        <a href="general.html"><span class="nav-dot" style="background:#d1d5db;"></span>General</a>
+      </div>
+    </div>
+    <a href="workflows.html">워크플로우</a>
+    <a href="usage.html">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>Economy (경제)</h1>
+  <p class="subtitle">
+    재무 분석가 페르소나. 상승/하락 양면 분석.
+    사실과 의견을 구분하고 절대 예측하지 않는다. 균형 잡힌 투자 판단을 돕는다.
+  </p>
+
+  <hr>
+
+  <h2>코치 개요</h2>
+  <div class="card-row-2" style="margin-bottom: 16px;">
+    <div class="card">
+      <div class="card-header">페르소나</div>
+      <div class="card-body">
+        <p>노련한 재무 분석가. 상승 가능성과 리스크를 모두 다루는 균형 잡힌 분석을 제공한다. 사실과 의견을 명확히 구분하며, 절대적인 예측은 하지 않는다.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">핵심 원칙</div>
+      <div class="card-body" style="color: #6b7280;">
+        - 양면 분석: 상승 + 리스크
+        - 사실/의견 명확히 구분
+        - 절대 예측 금지
+        - 균형 잡힌 판단 지원
+        - 한국어 주 언어
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">자동 감지 키워드</div>
+      <div class="card-body">
+        <div class="coach-tags">
+          <span class="tag">경제</span><span class="tag">주식</span><span class="tag">투자</span><span class="tag">코인</span>
+          <span class="tag">부동산</span><span class="tag">ETF</span><span class="tag">펀드</span>
+          <span class="tag">금리</span><span class="tag">환율</span><span class="tag">물가</span>
+          <span class="tag">배당</span><span class="tag">포트폴리오</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">전환</div>
+      <div class="card-body">
+        <p style="color: #6b7280;">자동: 경제 관련 키워드 감지 시<br>수동: <code>/tone economy</code></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>종목 스크리닝 방법론 (필터)</h2>
+  <p class="subtitle">
+    전체 시장에서 투자 후보를 걸러내는 정량 필터 체계. NYSE, NASDAQ, KOSPI 등 어떤 거래소든 동일한 필터를 적용한다.
+  </p>
+
+  <div class="card" style="margin-bottom: 16px;">
+    <div class="card-header">공통 스크린 (모든 시장 필수)</div>
+    <div class="card-body">
+      <div class="quickref">
+        <div class="quickref-row quickref-header">
+          <div class="quickref-cell">필터</div>
+          <div class="quickref-cell">한국 시장 기준</div>
+          <div class="quickref-cell">미국 시장 기준</div>
+        </div>
+        <div class="quickref-row quickref-even">
+          <div class="quickref-cell">시가총액</div>
+          <div class="quickref-cell">&gt; 1조원</div>
+          <div class="quickref-cell">&gt; 1B USD</div>
+        </div>
+        <div class="quickref-row quickref-odd">
+          <div class="quickref-cell">일평균 거래대금</div>
+          <div class="quickref-cell">&gt; 50억원</div>
+          <div class="quickref-cell">&gt; 10M USD</div>
+        </div>
+        <div class="quickref-row quickref-even">
+          <div class="quickref-cell">부채비율</div>
+          <div class="quickref-cell">&lt; 300%</div>
+          <div class="quickref-cell">&lt; 300%</div>
+        </div>
+        <div class="quickref-row quickref-odd">
+          <div class="quickref-cell">연속 흑자</div>
+          <div class="quickref-cell">최근 3년</div>
+          <div class="quickref-cell">최근 3년</div>
+        </div>
+        <div class="quickref-row quickref-even">
+          <div class="quickref-cell">ROE</div>
+          <div class="quickref-cell">&gt; 5%</div>
+          <div class="quickref-cell">&gt; 5%</div>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: #6b7280; margin-top: 12px;">
+        이 5개 필터만 통과해도 전체 상장 종목의 약 10~15%만 남는다. NYSE 기준 2,400개 → 약 300개로 압축.
+      </p>
+    </div>
+  </div>
+
+  <div class="card-row-2" style="margin-bottom: 16px;">
+    <div class="card">
+      <div class="card-header">선택적 스크린 (상황별 적용)</div>
+      <div class="card-body" style="color: #6b7280;">
+        - PER &lt; 업종 평균 (가치 발굴)
+        - EPS 성장률 &gt; 15% (성장 발굴)
+        - 배당수익률 &gt; 3% (배당 발굴)
+        - PBR &lt; 1 (자산주 발굴)
+        - 외국인/기관 순매수 지속 (수급 확인)
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">필터 설계 원칙</div>
+      <div class="card-body" style="color: #6b7280;">
+        - 유동성: 거래 가능한 종목만 대상
+        - 건전성: 과도한 레버리지는 배제
+        - 수익성: 적자 기업은 장기 투자 부적합
+        - 효율성: ROE로 자본 활용도 확인
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">이 필터의 한계 (솔직히)</div>
+    <div class="card-body">
+      <p style="color: #6b7280; font-size: 13px;">
+        1. 정량 필터는 과거 데이터 기반이다. 미래 성장주(현재 적자)는 걸러진다.
+        2. 부채비율 300% 기준은 자본집약적 산업(금융, 건설)에 부적합할 수 있다. 섹터별로 조정한다.
+        3. 이 필터는 <strong>1차 스크린</strong>일 뿐이다. 통과한 종목도 정성 분석(비즈니스 모델, 경쟁 포지션, 해자, 경영진)을 반드시 거친다.
+        4. 어떤 필터도 100% 신뢰할 수 없다. 필터가 완벽하다면 모두가 부자다.
+      </p>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>대화 예시</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="conversation-list">
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>이 주식 어때?</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>금리 인하가 시장에 어떤 영향 줘?</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>ETF랑 개별주 차이 설명해줘</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>환율이 오르면 수출 기업에 어떤 영향?</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>포트폴리오 리밸런싱 어떻게 해?</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    마지막 수정: 2026-06-07.
+  </div>
+
+</div>
+
+<script>
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  var isOpen = menu.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) { menu.classList.add('open'); }
+}
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown-menu').forEach(function(m) { m.classList.remove('open'); });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) { closeAllDropdowns(); }
+});
+</script>
+</body>
+</html>

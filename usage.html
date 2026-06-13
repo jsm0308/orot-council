@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki — 사용 가이드</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v2</span></div>
+  <div class="nav-top">
+    <a href="index.html">시스템 개요</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-toggle" onclick="toggleDropdown(this)">코치 모드 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="research.html"><span class="nav-dot" style="background:#7c3aed;"></span>Research Mentor <span class="tag new">신규</span></a>
+        <a href="study.html"><span class="nav-dot" style="background:#2563eb;"></span>Study</a>
+        <a href="fitness.html"><span class="nav-dot" style="background:#059669;"></span>Fitness</a>
+        <a href="economy.html"><span class="nav-dot" style="background:#d97706;"></span>Economy</a>
+        <a href="general.html"><span class="nav-dot" style="background:#d1d5db;"></span>General</a>
+      </div>
+    </div>
+    <a href="workflows.html">워크플로우</a>
+    <a href="usage.html" class="active">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>사용 가이드</h1>
+  <p class="subtitle">
+    JSM Wiki 시스템을 실제로 사용하는 방법. 시작부터 명령어 레퍼런스까지.
+  </p>
+
+  <hr>
+
+  <h2>실행 환경</h2>
+  <div class="card-row-2" style="margin-bottom: 20px;">
+    <div class="card">
+      <div class="card-header"><span class="tag accent">권장</span> Cursor IDE</div>
+      <div class="card-body">
+        <p style="margin-bottom: 8px;">Cursor IDE 안에서 직접 대화. 모든 기능이 자연어로 작동.</p>
+        <p style="color: #6b7280; font-size: 12px;">"읽어서 위키에 반영해줘" → 인제스트</p>
+        <p style="color: #6b7280; font-size: 12px;">"저장해줘" → 위키 페이지로 저장</p>
+        <p style="color: #6b7280; font-size: 12px;">"검색해줘 attention" → 위키 검색</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">chat.py CLI</div>
+      <div class="card-body">
+        <p style="margin-bottom: 8px;"><code>python chat.py</code>로 실행. <code>/</code> 명령어 추가 지원.</p>
+        <p style="color: #6b7280; font-size: 12px;"><code>/tone research</code> → 연구 멘토 모드</p>
+        <p style="color: #6b7280; font-size: 12px;"><code>/search 쿼리</code> → 위키 검색</p>
+        <p style="color: #6b7280; font-size: 12px;"><code>/calendar today</code> → 오늘 일정</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <strong>모드는 자동 감지된다.</strong> "/tone research"를 입력하지 않아도 "연구 어떻게 시작해?"라고 말하면 Research Mentor로 전환된다.
+    모드가 바뀌면 응답 앞에 <code>(research)</code>, <code>(study)</code> 같은 표시가 붙는다.
+    수동 전환이 필요하면 <code>/tone {mode}</code>를 사용한다.
+  </div>
+
+  <hr>
+
+  <h2>빠른 시작</h2>
+  <div class="card-row">
+    <div class="card card-sm">
+      <div class="card-header"><span class="tag accent">1</span> 실행</div>
+      <div class="card-body">
+        <p style="margin-bottom: 6px;"><strong>Cursor IDE:</strong> 그냥 채팅 시작</p>
+        <p style="color: #6b7280; font-size: 12px;">rule 파일 자동 로드</p>
+        <p style="margin-bottom: 6px; margin-top: 10px;"><strong>CLI:</strong> <code>python chat.py</code></p>
+        <p style="color: #6b7280; font-size: 12px;">Obsidian 연결 상태 확인</p>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header"><span class="tag accent">2</span> 대화</div>
+      <div class="card-body">
+        <p>명령어 없이 자연스럽게 말한다.</p>
+        <p style="color: #6b7280; font-size: 12px; margin-top: 8px;">"연구 어떻게 시작해?"</p>
+        <p style="color: #9ca3af; font-size: 11px;">→ <code>(research)</code> 자동 전환</p>
+        <p style="color: #6b7280; font-size: 12px;">"오늘 운동 뭐할까?"</p>
+        <p style="color: #9ca3af; font-size: 11px;">→ <code>(fitness)</code> 자동 전환</p>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header"><span class="tag accent">3</span> 응답</div>
+      <div class="card-body">
+        <p>코치가 현재 모드에 맞춰 응답한다.</p>
+        <p style="color: #6b7280; font-size: 12px; margin-top: 8px;">Research: 관심사 파악 → 논문 추천 → 액션 아이템</p>
+        <p style="color: #6b7280; font-size: 12px;">Study: 개념 설명 + 위키 [[링크]] 인용</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>모드별 대화 예시</h2>
+  <div class="quickref">
+    <div class="quickref-row quickref-header">
+      <div class="quickref-cell">이렇게 말하면</div>
+      <div class="quickref-cell">모드</div>
+      <div class="quickref-cell">이렇게 반응한다</div>
+    </div>
+    <div class="quickref-row quickref-even">
+      <div class="quickref-cell"><code>연구 어떻게 시작해?</code></div>
+      <div class="quickref-cell"><span class="tag accent">research</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">관심사/실력 파악 → 논문 1편 추천 → 1-3일 할 일</div>
+    </div>
+    <div class="quickref-row quickref-odd">
+      <div class="quickref-cell"><code>Mamba 이 개념 설명해줘</code></div>
+      <div class="quickref-cell"><span class="tag" style="background: #2563eb; color: #fff;">study</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">정밀한 개념 설명 + 위키 [[링크]] 인용</div>
+    </div>
+    <div class="quickref-row quickref-even">
+      <div class="quickref-cell"><code>저장해줘</code></div>
+      <div class="quickref-cell"><span class="tag base">명령어</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">마지막 응답을 위키 페이지로 저장</div>
+    </div>
+    <div class="quickref-row quickref-odd">
+      <div class="quickref-cell"><code>읽어서 위키에 반영해줘</code></div>
+      <div class="quickref-cell"><span class="tag base">명령어</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">소스 파일 읽고 5~15개 위키 페이지 생성/수정</div>
+    </div>
+    <div class="quickref-row quickref-even">
+      <div class="quickref-cell"><code>검색해줘 attention</code></div>
+      <div class="quickref-cell"><span class="tag base">명령어</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">위키에서 검색, 관련도 순 표시</div>
+    </div>
+    <div class="quickref-row quickref-odd">
+      <div class="quickref-cell"><code>점검해줘</code></div>
+      <div class="quickref-cell"><span class="tag base">명령어</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">전체 건강검진 (수동 실행 필요)</div>
+    </div>
+    <div class="quickref-row quickref-even">
+      <div class="quickref-cell"><code>오늘 운동 뭐할까?</code></div>
+      <div class="quickref-cell"><span class="tag green">fitness</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">실천 가능한 운동 조언, 안전 우선</div>
+    </div>
+    <div class="quickref-row quickref-odd">
+      <div class="quickref-cell"><code>이 주식 어때?</code></div>
+      <div class="quickref-cell"><span class="tag yellow">economy</span></div>
+      <div class="quickref-cell" style="color: #6b7280;">양면 분석: 상승 + 리스크, 예측 없음</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>일반적인 연구 세션 흐름</h2>
+  <div class="card">
+    <div class="card-body">
+      <div style="display: grid; grid-template-columns: 70px 1fr; gap: 8px 16px; font-size: 13px;">
+        <div style="font-weight: 600; color: #6b7280;">1단계</div>
+        <div>PDF를 <code>2_Sources/papers/</code>에 넣는다</div>
+        <div style="font-weight: 600; color: #6b7280;">2단계</div>
+        <div>"읽어서 위키에 반영해줘" → 파일 선택 → 핵심 내용 추출</div>
+        <div style="font-weight: 600; color: #6b7280;">3단계</div>
+        <div>"무엇을 강조할까?" → 한 개념 골라 깊이 파기</div>
+        <div style="font-weight: 600; color: #6b7280;">4단계</div>
+        <div>위키 페이지 생성 (프론트매터 + 크로스레퍼런스)</div>
+        <div style="font-weight: 600; color: #6b7280;">5단계</div>
+        <div>멘토에게 질문: "이 개념 다른 논문에선?"</div>
+        <div style="font-weight: 600; color: #6b7280;">6단계</div>
+        <div>세션 종료. 1-3일 액션 아이템 1-3개</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>명령어 레퍼런스 (chat.py CLI)</h2>
+  <div class="cmds-grid">
+    <div class="cmd-group">
+      <div class="card-header">채팅 제어</div>
+      <div class="card-body">
+        <div class="cmd-item"><code>/help</code><span style="color: #6b7280;">모든 명령어 보기</span></div>
+        <div class="cmd-item"><code>/exit</code><span style="color: #6b7280;">세션 종료</span></div>
+        <div class="cmd-item"><code>/model pro</code><span style="color: #6b7280;">심층 추론 모드</span></div>
+        <div class="cmd-item"><code>/model fast</code><span style="color: #6b7280;">빠른 모드 (기본)</span></div>
+        <div class="cmd-item"><code>/tone research</code><span style="color: #6b7280;">연구 멘토 모드</span></div>
+        <div class="cmd-item"><code>/tone study</code><span style="color: #6b7280;">학습 튜터 모드</span></div>
+        <div class="cmd-item"><code>/tone fitness</code><span style="color: #6b7280;">운동 트레이너</span></div>
+        <div class="cmd-item"><code>/tone economy</code><span style="color: #6b7280;">경제 분석 모드</span></div>
+        <div class="cmd-item"><code>/tone general</code><span style="color: #6b7280;">일반 모드</span></div>
+      </div>
+    </div>
+    <div class="cmd-group">
+      <div class="card-header">워크플로우 명령어</div>
+      <div class="card-body">
+        <div class="cmd-item"><code>/search 쿼리</code><span style="color: #6b7280;">위키 검색</span></div>
+        <div class="cmd-item"><code>/index</code><span style="color: #6b7280;">위키 목록 보기</span></div>
+        <div class="cmd-item"><code>/log</code><span style="color: #6b7280;">활동 기록 (최근 20개)</span></div>
+        <div class="cmd-item"><code>/log 50</code><span style="color: #6b7280;">최근 50개 기록</span></div>
+        <div class="cmd-item"><code>/lint</code><span style="color: #6b7280;">건강검진 (수동 실행)</span></div>
+        <div class="cmd-item"><code>/ingest 경로</code><span style="color: #6b7280;">소스 파일 주입</span></div>
+        <div class="cmd-item"><code>/save</code><span style="color: #6b7280;">응답을 위키에 저장</span></div>
+        <div class="cmd-item"><code>/migrate</code><span style="color: #6b7280;">v1 아카이브 이전</span></div>
+        <div class="cmd-item"><code>/calendar today</code><span style="color: #6b7280;">오늘 일정</span></div>
+        <div class="cmd-item"><code>/calendar add</code><span style="color: #6b7280;">일정 추가</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    마지막 수정: 2026-06-07.
+  </div>
+
+</div>
+
+<script>
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  var isOpen = menu.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) { menu.classList.add('open'); }
+}
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown-menu').forEach(function(m) { m.classList.remove('open'); });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) { closeAllDropdowns(); }
+});
+</script>
+</body>
+</html>

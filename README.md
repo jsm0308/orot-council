@@ -1,49 +1,129 @@
-# fdparty — 개발 에이전트
+# Personal Agent System — Coach + Wiki + Investment + Trading
 
-fdparty 개발팀을 위한 **4-Mode CTO 에이전트**. Cursor IDE + Claude로 구동.
+한 사람의 연구, 학습, 투자, 운동, 일상 결정을 모두 커버하는 **개인 AI 에이전트 시스템**. Cursor IDE + DeepSeek v4 Pro + Upbit API로 구동.
 
-## 구조
+## 철학
+
+- **의도를 가진 100시간 > 의도 없는 10,000시간** — AI가 실행을 맡고, 나는 판단에 집중한다
+- **Build to Learn** — Modern Robotics, Mamba, Dynamics 같은 이론을 공부할 때 반드시 코드로 증명
+- **Public Shipping** — 배운 것은 곧바로 공개 가능한 결과물로. GitHub = 이력서
+
+## 시스템 구조
 
 ```
-.cursor/rules/
-  fdparty-agent.mdc    ← 4-Mode 시스템 프롬프트 (alwaysApply)
-  adr.mdc              ← ADR 자동 기록
-  ceo-memo.mdc         ← 개발 메모 자동 누적
-  decision-council.mdc ← Mode B 아키텍트 소집 (온디맨드)
-  report-review.mdc    ← 코드 검수 (온디맨드)
-council/
-  protocol.md          ← 아키텍트 소집 프로토콜
-  agents/
-    CLAUDE.md          ← CTO 에이전트 오케스트레이터 지시서
-    아키텍트/           ← Mode B 렌즈 3명 (기술/효율/실행)
-    검수/              ← 코드 검수 비서 1명
-decisions/LOG.md       ← 결정·ADR 인덱스 (SSOT)
-CEO-memo.txt           ← 개발 메모 누적 (append-only)
-runner/                ← Anthropic API로 아키텍트 병렬 호출 (CLI)
+├── core/                     Python engine
+│   ├── coaches.py            Multi-domain coach personas
+│   ├── config.py             Environment configuration
+│   ├── converters.py         Format converters
+│   ├── crossref.py           Cross-reference resolver
+│   ├── google_calendar.py    Google Calendar integration
+│   ├── ical_sync.py          iCal sync engine
+│   ├── ingest.py             Content ingestion pipeline
+│   ├── lint.py               Wiki health checker
+│   ├── search_engine.py      Local wiki search
+│   └── wiki_manager.py       Wiki CRUD with Obsidian sync
+├── scripts/
+│   ├── yt_transcript.py      YouTube transcript extractor v2
+│   │                          (speaker detection, term fix, chapter breaks)
+│   └── investment/
+│       ├── sources/          Macro / Sector / KRX / News / Fund flow fetchers
+│       ├── backtest/         Rule-based strategy backtest engine
+│       │                      (Sharpe, Sortino, Calmar, VaR/CVaR)
+│       └── reports/          Weekly investment report generator + deep dive
+├── autotrade.py              BTC Auto-Trade Bot v2
+│                              (DeepSeek + Upbit + Technical Indicators)
+├── instructions.md           Trading bot decision instructions (LLM prompt)
+├── ontology/                 Knowledge graph structure
+│   ├── subject-tree.md       Subject taxonomy
+│   ├── topics.md             Topic vocabulary
+│   ├── wiki-manifest.json    Wiki inventory
+│   └── wiki-dependencies.json Dependency graph
+├── *.html / styles.css       Dashboard UIs (crypto, economy, fitness, etc.)
+├── requirements.txt          Python dependencies
+├── wiki_schema.md            Wiki v3 schema specification
+├── CONVENTIONS.md            Operating rules for the system
+└── QUICKREF.md               Quick reference
 ```
 
-## 4-Mode 요약
+## 주요 기능
 
-| Mode | 이름 | 용도 |
-|------|------|------|
-| A | Deep-Dive Tutor | 이론/논문/원리 학습 (역질문 의무) |
-| B | Architecture Master | 기술 의사결정 + ADR 출력 |
-| C | Agile Sprint | 즉시 복붙 가능한 MVP 코드 |
-| D | Obsidian Archivist | 세션 정리 → 옵시디언 노트 |
+### 투자 분석 & 트레이딩
 
-## 프로젝트: fdparty 미식 정보 플랫폼
+- **주간 투자 보고서**: 매크로 → 섹터 → 종목 Top-Down 분석, DeepSeek로 자동 생성
+- **BTC Auto-Trade Bot v2**: 8시간 주기 자동매매. OHLCV + 기술적 지표(RSI/MACD/Bollinger/EMA) + 공포·탐욕 지수 + 뉴스 감성 + 온체인 데이터(스테이블코인 시총/체인 TVL) → DeepSeek v4 Pro 추론 → Upbit 주문
+- **Deep Dive**: 개별 종목 정량 분석 (FCF, moat, 경쟁력, 시나리오 밸류에이션)
+- **백테스트 엔진**: MACD Cross / RSI Reversal / Bollinger Breakout / EMA-SMA Momentum 전략에 대한 Sharpe, Sortino, Calmar, Max DD, Win Rate, VaR/CVaR 계산
 
-- AWS 기반 웹사이트
-- 핵심 모듈: AI 챗봇 / 임베딩 추천 / 식당·대회·셰프 DB
-- 옵시디언 볼트: `C:\Users\Gram\Desktop\jsm\fdparty\` (ADR + notes)
+### Wiki 시스템 (개인 지식 베이스)
 
-## 아키텍트 소집 (러너, 선택사항)
+- **v3 Wiki**: `kind: concept | entity | source-record | decision | insight | comparison` 분류 체계
+- **Prose Relations**: `builds on [[x]]`, `contradicts [[y]]`, `applies to [[z]]` — 그래프 기반 지식 연결
+- **Obsidian Sync**: `2_Wiki/` 디렉토리와 자동 동기화
+- **Lint**: 기계적 검증 + 모순 탐지 + 고아 페이지 탐지
+- **Ingest**: YouTube, 논문, 팟캐스트 → 자동 source-record + concept 페이지 분해
+
+### YouTube 트랜스크립트
+
+- `yt_transcript.py` — 자동 생성 자막의 오인식 교정(TERM_FIX), 화자 태그 기반 대화 포맷, 챕터 구분, 60초 간격 타임스탬프
+- `raw` / `clean` / `dialogue` 3가지 출력 모드
+
+### 대시보드
+
+- `crypto-bot.html` — BTC 봇 상태 모니터링
+- `economy.html` — 경제 지표 대시보드
+- `fitness.html` / `study.html` / `research.html` — 도메인별 대시보드
+- `index.html` — 시스템 오버뷰
+- `styles.css` — 공통 스타일
+
+## 기술 스택
+
+| 레이어 | 기술 |
+|---|---|
+| Agent Runtime | Cursor IDE + Cursor Rules (.cursor/rules/*.mdc) |
+| LLM Inference | DeepSeek v4 Pro (deepseek-v4-pro) |
+| Trading | Upbit API (pyupbit) |
+| Data | CoinGecko, DeFiLlama, KRX, FRED, Google News |
+| Backtest | pandas + numpy |
+| Wiki | Obsidian vault (flat directory) |
+| Deployment | Windows 10, venv |
+
+## 시작하기
 
 ```bash
-cd runner
-npm install
-cp .env.example .env   # ANTHROPIC_API_KEY 채우기
-npm run council -- "결정: ... / 선택지: ... / 제약: ... / 좋은 결정: ..."
+git clone https://github.com/jsm0308/orot-council.git
+cd orot-council
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+
+# .env 파일 생성 (API 키 입력)
+# DEEPSEEK_API_KEY=sk-...
+# UPBIT_ACCESS_KEY=...
+# UPBIT_SECRET_KEY=...
+# SERPAPI_API_KEY=...
+
+# BTC Auto-Trade Bot (dry run)
+python autotrade.py
+
+# 주간 투자 보고서 생성
+python scripts/investment/reports/generate_weekly.py --dry-run
+
+# YouTube 트랜스크립트 추출
+python scripts/yt_transcript.py "https://youtu.be/VIDEO_ID" --mode dialogue
 ```
 
-비서 3명(기술/효율/실행)을 Anthropic API로 병렬 호출, 독립 판정 후 `decisions/LOG.md`에 기록.
+## 현재 스터디/프로젝트
+
+- **로보틱스**: Modern Robotics (Lynch & Park) Ch 2-8, ROS2, HYPER 로보틱스 클럽 (8월~)
+- **AI/ML**: Mamba (SSM), Decision Transformer, Vision-Language-Action 모델
+- **투자**: ISA 200만원 S&P500 중심 코어-위성 전략 (8월 집행)
+- **퀀트**: BTC 단기 트레이딩 전략 개발 및 백테스트
+
+## 라이선스
+
+MIT
+
+---
+
+*"The best way to predict the future is to build it."*  
+*한 명의 개발자 + 100개의 에이전트.*

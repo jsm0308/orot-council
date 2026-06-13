@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki — Study</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v2</span></div>
+  <div class="nav-top">
+    <a href="index.html">시스템 개요</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-toggle active" onclick="toggleDropdown(this)">코치 모드 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="research.html"><span class="nav-dot" style="background:#7c3aed;"></span>Research Mentor <span class="tag new">신규</span></a>
+        <a href="study.html" class="sub-active"><span class="nav-dot" style="background:#2563eb;"></span>Study</a>
+        <a href="fitness.html"><span class="nav-dot" style="background:#059669;"></span>Fitness</a>
+        <a href="economy.html"><span class="nav-dot" style="background:#d97706;"></span>Economy</a>
+        <a href="general.html"><span class="nav-dot" style="background:#d1d5db;"></span>General</a>
+      </div>
+    </div>
+    <a href="workflows.html">워크플로우</a>
+    <a href="usage.html">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>Study (학습)</h1>
+  <p class="subtitle">
+    학술 튜터 페르소나. 정밀한 개념 설명과 예시 중심으로 공부를 도와준다.
+    위키 [[링크]]로 기존 지식과 연결하며, 자연스럽게 한국어로 소통한다.
+  </p>
+
+  <hr>
+
+  <h2>코치 개요</h2>
+  <div class="card-row-2" style="margin-bottom: 16px;">
+    <div class="card">
+      <div class="card-header">페르소나</div>
+      <div class="card-body">
+        <p>헌신적인 학술 멘토. 정밀하고 구조화된 설명을 제공하며, 출처는 위키 [[링크]]로 인용한다. 비판적 사고를 장려하고 후속 질문을 제안한다.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">핵심 원칙</div>
+      <div class="card-body" style="color: #6b7280;">
+        - 정밀한 정의와 명확한 예시
+        - 위키 링크로 지식 연결
+        - 비판적 사고 장려
+        - 후속 질문 제안
+        - 한국어 주 언어
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">자동 감지 키워드</div>
+      <div class="card-body">
+        <div class="coach-tags">
+          <span class="tag">공부</span><span class="tag">학습</span><span class="tag">논문</span><span class="tag">개념</span>
+          <span class="tag">이론</span><span class="tag">수학</span><span class="tag">코딩</span>
+          <span class="tag">프로그래밍</span><span class="tag">algorithm</span>
+          <span class="tag">시험</span><span class="tag">강의</span><span class="tag">tutorial</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">전환</div>
+      <div class="card-body">
+        <p style="color: #6b7280;">자동: 학습 관련 키워드 감지 시<br>수동: <code>/tone study</code></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>대화 예시</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="conversation-list">
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>Mamba 이 개념 설명해줘</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>SSM이랑 Attention의 차이가 뭐야?</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>Backpropagation 수학적으로 설명해줘</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>Python 데코레이터 예제로 설명해줘</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>이 논문의 Figure 3이 이해가 안 돼</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    마지막 수정: 2026-06-07.
+  </div>
+
+</div>
+
+<script>
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  var isOpen = menu.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) { menu.classList.add('open'); }
+}
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown-menu').forEach(function(m) { m.classList.remove('open'); });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) { closeAllDropdowns(); }
+});
+</script>
+</body>
+</html>

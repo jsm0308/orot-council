@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki — Crypto Trading Bot</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .arch-flow {
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    font-size: 12px; margin: 16px 0;
+  }
+  .arch-node {
+    background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px;
+    padding: 10px 14px; text-align: center; min-width: 100px; flex: 1;
+  }
+  .arch-node.head { background: #eff6ff; border-color: #93c5fd; }
+  .arch-node.llm { background: #f5f3ff; border-color: #a78bfa; }
+  .arch-node.exec { background: #fef3c7; border-color: #fcd34d; }
+  .arch-node.mem { background: #fce7f3; border-color: #f9a8d4; }
+  .arch-arrow {
+    color: #9ca3af; font-size: 18px; font-weight: 700; flex-shrink: 0;
+  }
+  .arch-node-title { font-weight: 700; font-size: 11px; color: #374151; margin-bottom: 2px; }
+  .arch-node-desc { font-size: 10px; color: #6b7280; line-height: 1.4; }
+
+  .pipeline-steps { counter-reset: step; }
+  .pipeline-step {
+    counter-increment: step; padding: 14px 16px;
+    border-left: 3px solid #2563eb; margin-bottom: 8px;
+    background: #f9fafb; border-radius: 0 8px 8px 0;
+  }
+  .pipeline-step::before {
+    content: counter(step); display: inline-block;
+    width: 22px; height: 22px; border-radius: 11px;
+    background: #2563eb; color: #fff; font-size: 11px; font-weight: 700;
+    text-align: center; line-height: 22px; margin-right: 10px;
+  }
+
+  .indicator-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;
+  }
+  .indicator-card {
+    background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .indicator-card .name { font-weight: 700; font-size: 13px; color: #1f2937; }
+  .indicator-card .param { font-size: 11px; color: #6b7280; margin: 2px 0 6px; }
+  .indicator-card .signal { font-size: 11px; color: #374151; line-height: 1.5; }
+
+  .warn-banner {
+    background: #fef2f2; border: 1px solid #fca5a5; border-radius: 10px;
+    padding: 16px 20px; margin-bottom: 24px;
+  }
+  .warn-banner h3 { color: #b91c1c; margin-bottom: 6px; font-size: 15px; }
+  .warn-banner ul { margin: 0; padding-left: 20px; font-size: 13px; color: #7f1d1d; }
+
+  .status-live {
+    display: inline-block; background: #059669; color: #fff;
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    margin-left: 8px; vertical-align: middle;
+  }
+  .status-dry {
+    display: inline-block; background: #d97706; color: #fff;
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    margin-left: 8px; vertical-align: middle;
+  }
+  .code-block {
+    background: #1e293b; color: #e2e8f0; padding: 12px 16px;
+    border-radius: 8px; font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 12px; overflow-x: auto; line-height: 1.6; margin: 10px 0;
+  }
+  .flow-diagram {
+    display: flex; flex-direction: column; gap: 6px; padding: 16px;
+    background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    margin: 12px 0; color: #374151;
+  }
+  .flow-line { display: flex; align-items: center; gap: 6px; }
+  .flow-box {
+    border: 1px solid #d1d5db; border-radius: 4px; padding: 4px 10px;
+    background: #fff; font-weight: 600;
+  }
+  .flow-arrow { color: #2563eb; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v2</span></div>
+  <div class="nav-top">
+    <a href="index.html">시스템 개요</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-toggle active" onclick="toggleDropdown(this)">코치 모드 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="research.html"><span class="nav-dot" style="background:#7c3aed;"></span>Research Mentor <span class="tag new">신규</span></a>
+        <a href="study.html"><span class="nav-dot" style="background:#2563eb;"></span>Study</a>
+        <a href="fitness.html"><span class="nav-dot" style="background:#059669;"></span>Fitness</a>
+        <a href="economy.html"><span class="nav-dot" style="background:#d97706;"></span>Economy</a>
+        <a href="crypto-bot.html" class="sub-active"><span class="nav-dot" style="background:#f59e0b;"></span>Crypto Bot <span class="tag new">신규</span></a>
+        <a href="general.html"><span class="nav-dot" style="background:#d1d5db;"></span>General</a>
+      </div>
+    </div>
+    <a href="workflows.html">워크플로우</a>
+    <a href="usage.html">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>BTC Auto-Trade Bot <span class="status-live">운영 중</span></h1>
+  <p class="subtitle">
+    DeepSeek v4 Pro 기반 완전 자율형 비트코인 단기 트레이딩 시스템.
+    1시간 단위로 시장 데이터를 분석하고 GPT 수준의 추론으로 매매 결정을 내린다.
+    <strong>조코딩 GPT-Bitcoin 프로젝트 아키텍처 기반, DeepSeek 마이그레이션 완료.</strong>
+  </p>
+
+  <!-- ── Warning ── -->
+  <div class="warn-banner">
+    <h3>실험용 시스템</h3>
+    <ul>
+      <li>이 봇은 <strong>교육 및 실험 목적</strong>으로 제작되었다. 수익성을 입증하는 백테스트 데이터가 존재하지 않는다.</li>
+      <li>잃어도 괜찮은 금액 외에는 <strong>절대 투입하지 말 것</strong>.</li>
+      <li>실제 자금 투입 전 <strong>최소 3개월 드라이런(모의 거래) 필수</strong>.</li>
+      <li>이 봇은 JSM 장기 투자 전략(<code>investment-agent.mdc</code>)을 보완하는 <strong>소액 실험용 위성 시스템</strong>이다.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ── Quick Stats ── -->
+  <h2>시스템 현황</h2>
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value">1h</div>
+      <div class="stat-title">판단 주기</div>
+      <div class="stat-desc">매 시간 정각 자동 분석</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">5</div>
+      <div class="stat-title">데이터 모듈</div>
+      <div class="stat-desc">시장 + 뉴스 + 심리 + 판단 + 기록</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:#d97706;">30%</div>
+      <div class="stat-title">최대 거래 비중</div>
+      <div class="stat-desc">단일 주문 원화 잔고 대비 상한</div>
+    </div>
+  </div>
+
+  <div class="card-row" style="margin-top: 10px;">
+    <div class="card card-sm">
+      <div class="card-header">LLM</div>
+      <div class="card-body">
+        <strong>DeepSeek v4 Pro</strong><br>
+        <span style="font-size:11px;color:#6b7280;">deepseek-v4-pro<br>1.6T params, 1M context</span>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">거래소</div>
+      <div class="card-body">
+        <strong>업비트 (Upbit)</strong><br>
+        <span style="font-size:11px;color:#6b7280;">KRW-BTC 마켓<br>수수료 0.05%</span>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">배포</div>
+      <div class="card-body">
+        <strong>로컬 PC → AWS EC2</strong><br>
+        <span style="font-size:11px;color:#6b7280;">현재: 로컬 (nohup)<br>향후: EC2 t2.micro 무료티어</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── Architecture ── -->
+  <h2>시스템 아키텍처</h2>
+  <p class="subtitle">5개 모듈이 파이프라인으로 연결되어 1시간마다 자동 실행된다.</p>
+
+  <div class="flow-diagram">
+    <div class="flow-line">
+      <span class="flow-box" style="background:#eff6ff;border-color:#93c5fd;">Module 1<br>시장 데이터</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-box" style="background:#f0fdf4;border-color:#86efac;">Module 2<br>감성 데이터</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-box" style="background:#f5f3ff;border-color:#a78bfa;">Module 4<br>LLM 추론</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-box" style="background:#fef3c7;border-color:#fcd34d;">Module 5<br>주문 실행</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-box" style="background:#fce7f3;border-color:#f9a8d4;">Module 6<br>메모리</span>
+    </div>
+    <div class="flow-line" style="justify-content: center;">
+      <span style="color:#9ca3af;font-size:10px;">▲ 과거 결정을 다음 프롬프트에 재주입 (재귀적 개선)</span>
+    </div>
+  </div>
+
+  <!-- ── Pipeline Steps ── -->
+  <h3>1시간 주기 실행 파이프라인</h3>
+  <div class="pipeline-steps">
+    <div class="pipeline-step">
+      <strong>시장 데이터 수집</strong> (Module 1)<br>
+      <span style="font-size:12px;color:#6b7280;">
+        업비트 API에서 30일 일봉 + 24시간 시간봉 OHLCV 수집.
+        SMA, EMA, RSI, MACD, Stochastic, Bollinger Bands 등 7개 기술적 지표 계산.
+        호가창(Orderbook) 데이터 포함.
+      </span>
+    </div>
+    <div class="pipeline-step">
+      <strong>뉴스 및 감성 데이터 수집</strong> (Module 2)<br>
+      <span style="font-size:12px;color:#6b7280;">
+        SerpApi로 "Bitcoin" 관련 최신 뉴스 10건 크롤링.
+        Alternative.me에서 공포탐욕지수(Fear & Greed Index) 30일치 시계열 수집.
+      </span>
+    </div>
+    <div class="pipeline-step">
+      <strong>DeepSeek v4 Pro 추론</strong> (Module 4)<br>
+      <span style="font-size:12px;color:#6b7280;">
+        수집된 모든 데이터 + 과거 거래 기록 + instructions.md 프롬프트를 DeepSeek에 전송.
+        DeepSeek은 6단계 의사결정 워크플로우를 거쳐 JSON 형식으로 buy/sell/hold 결정 반환.
+        응답은 3단계 fallback 파서로 검증. 실패 시 지수 백오프 5회 재시도.
+      </span>
+    </div>
+    <div class="pipeline-step">
+      <strong>거래 실행</strong> (Module 5)<br>
+      <span style="font-size:12px;color:#6b7280;">
+        JSON 결정 검증 (비율 상한 30%, 잔고 체크, 환각 방지).
+        공포탐욕지수 연동 비율 조정 (극단적 공포 시 매수↑, 극단적 탐욕 시 매도↑).
+        업비트 API로 시장가 주문 실행. 수수료 0.05% 감안.
+      </span>
+    </div>
+    <div class="pipeline-step">
+      <strong>기록 및 재귀적 개선</strong> (Module 6)<br>
+      <span style="font-size:12px;color:#6b7280;">
+        모든 결정을 SQLite DB에 영구 저장.
+        다음 1시간 루프에서 과거 결정을 컨텍스트로 재주입 → 자기 교정 학습.
+        3연속 손실 시 서킷 브레이커 자동 발동.
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── Technical Indicators ── -->
+  <h2>기술적 지표 상세</h2>
+  <p class="subtitle">DeepSeek이 매매 판단에 사용하는 7가지 지표</p>
+
+  <div class="indicator-grid">
+    <div class="indicator-card">
+      <div class="name">SMA / EMA</div>
+      <div class="param">10일 이동평균</div>
+      <div class="signal">EMA &gt; SMA 상향돌파 → 매수<br>EMA &lt; SMA 하향돌파 → 매도</div>
+    </div>
+    <div class="indicator-card">
+      <div class="name">RSI</div>
+      <div class="param">14일 상대강도지수</div>
+      <div class="signal">30↓ 과매도 → 매수 기회<br>70↑ 과매수 → 매도 검토</div>
+    </div>
+    <div class="indicator-card">
+      <div class="name">MACD</div>
+      <div class="param">12/26/9 이동평균 수렴발산</div>
+      <div class="signal">MACD ↑ Signal선 돌파 → 매수<br>MACD ↓ Signal선 돌파 → 매도</div>
+    </div>
+    <div class="indicator-card">
+      <div class="name">Stochastic</div>
+      <div class="param">%K=14, %D=3</div>
+      <div class="signal">20↓ 과매도 → 반등 기대<br>80↑ 과매수 → 조정 예상</div>
+    </div>
+    <div class="indicator-card">
+      <div class="name">Bollinger Bands</div>
+      <div class="param">20일, 2σ 표준편차</div>
+      <div class="signal">하단밴드 터치 → 저평가 매수<br>상단밴드 터치 → 과열 매도</div>
+    </div>
+    <div class="indicator-card">
+      <div class="name">Fear & Greed Index</div>
+      <div class="param">30일 시계열 (Alternative.me)</div>
+      <div class="signal">0-25 극단적 공포 → 역발상 매수<br>75-100 극단적 탐욕 → 익절 검토</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── Risk Management ── -->
+  <h2>리스크 가드레일</h2>
+
+  <div class="card-row">
+    <div class="card card-sm">
+      <div class="card-header">거래 제한</div>
+      <div class="card-body" style="font-size:12px;color:#6b7280;">
+        - 최소 거래: 5,000 KRW<br>
+        - 최대 단일 거래: 잔고의 30%<br>
+        - 수수료: 0.05% 자동 반영<br>
+        - 레버리지/선물/옵션 금지<br>
+        - 알트코인 거래 금지
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">서킷 브레이커</div>
+      <div class="card-body" style="font-size:12px;color:#6b7280;">
+        - 3연속 손실 → 자동 중단<br>
+        - 수동 해제만 가능 (재시작)<br>
+        - 중단 시 로그에 경고 출력
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">응답 검증</div>
+      <div class="card-body" style="font-size:12px;color:#6b7280;">
+        - decision: buy/sell/hold 외 거부<br>
+        - percentage: 0-100 범위 제한<br>
+        - &gt;30% → 30%로 상한 조정<br>
+        - 잔고 부족 → hold 강제 전환<br>
+        - 환각 값 (999%) → hold 전환
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── File Structure ── -->
+  <h2>파일 구조</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="code-block">
+<span style="color:#93c5fd;">jsm personal agents/</span>
+├── <span style="color:#fbbf24;">autotrade.py</span>           메인 봇 스크립트 (600+ lines)
+├── <span style="color:#fbbf24;">instructions.md</span>       DeepSeek 시스템 프롬프트
+├── <span style="color:#fbbf24;">.env</span>                  API 키 (DeepSeek, Upbit, SerpApi)
+├── <span style="color:#fbbf24;">trading.db</span>            SQLite 거래 기록 DB
+├── <span style="color:#fbbf24;">requirements.txt</span>      Python 의존성
+├── <span style="color:#93c5fd;">.cursor/rules/</span>
+│   ├── investment-agent.mdc  장기 펀더멘털 애널리스트
+│   └── crypto-trading-bot.mdc  봇 기술 명세서
+└── <span style="color:#93c5fd;">output.log</span>            실행 로그 (nohup 시)
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── How to Run ── -->
+  <h2>실행 방법</h2>
+
+  <div class="card-row-2" style="margin-top: 12px;">
+    <div class="card">
+      <div class="card-header">1. 드라이런 (모의 거래)</div>
+      <div class="card-body">
+        <p style="font-size:12px;color:#6b7280;margin-bottom:8px;">업비트 API 키 없이도 DeepSeek 판단까지 전부 테스트 가능. 실제 주문은 실행되지 않는다.</p>
+        <div class="code-block">
+<span style="color:#6b7280;"># .env 설정</span>
+DRY_RUN=true
+<span style="color:#6b7280;"># UPBIT 키는 비워둬도 됨</span>
+
+<span style="color:#6b7280;"># 실행</span>
+python autotrade.py
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">2. 실전 거래</div>
+      <div class="card-body">
+        <p style="font-size:12px;color:#6b7280;margin-bottom:8px;">업비트에 원화 입금 후 API 키 발급. DRY_RUN=false로 전환.</p>
+        <div class="code-block">
+<span style="color:#6b7280;"># .env 설정</span>
+UPBIT_ACCESS_KEY=...
+UPBIT_SECRET_KEY=...
+DRY_RUN=false
+
+<span style="color:#6b7280;"># 실행 (백그라운드)</span>
+nohup python3 -u autotrade.py > output.log 2>&1 &
+<span style="color:#6b7280;"># 로그 확인</span>
+tail -f output.log
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── Deployment ── -->
+  <h2>AWS EC2 배포 (향후)</h2>
+  <div class="card">
+    <div class="card-body">
+      <table style="width:100%;font-size:12px;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #e5e7eb;">
+          <td style="padding:8px;font-weight:600;color:#6b7280;width:180px;">인스턴스</td>
+          <td style="padding:8px;">t2.micro (프리 티어, 첫 12개월 무료)</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e5e7eb;">
+          <td style="padding:8px;font-weight:600;color:#6b7280;">OS</td>
+          <td style="padding:8px;">Ubuntu 22.04 LTS</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e5e7eb;">
+          <td style="padding:8px;font-weight:600;color:#6b7280;">타임존</td>
+          <td style="padding:8px;"><code>sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime</code></td>
+        </tr>
+        <tr style="border-bottom:1px solid #e5e7eb;">
+          <td style="padding:8px;font-weight:600;color:#6b7280;">보안</td>
+          <td style="padding:8px;">SSH(22)만 인바운드 허용. 업비트 API IP 화이트리스트에 Elastic IP 등록.</td>
+        </tr>
+        <tr>
+          <td style="padding:8px;font-weight:600;color:#6b7280;">실행</td>
+          <td style="padding:8px;"><code>nohup python3 -u autotrade.py > output.log 2>&1 &</code></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ── Integration ── -->
+  <h2>장기 투자 에이전트와의 관계</h2>
+  <div class="card-row-2">
+    <div class="card">
+      <div class="card-header" style="background:#fef3c7;">장기 투자 (메인)</div>
+      <div class="card-body">
+        <p style="font-weight:600;color:#d97706;">investment-agent.mdc</p>
+        <p style="font-size:12px;color:#6b7280;">
+          ETF 중심 5년+ 포트폴리오<br>
+          주간 매크로/섹터 분석 보고서<br>
+          사용자가 최종 의사결정
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#fef3c7;">단기 트레이딩 (위성)</div>
+      <div class="card-body">
+        <p style="font-weight:600;color:#d97706;">crypto-trading-bot.mdc + autotrade.py</p>
+        <p style="font-size:12px;color:#6b7280;">
+          BTC 단일 종목, 1시간 사이클<br>
+          기술적 지표 + LLM 자동 판단<br>
+          전체 포트폴리오의 최대 5%
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    마지막 수정: 2026-06-10. DeepSeek v4 Pro 마이그레이션 완료.
+  </div>
+
+</div>
+
+<script>
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  var isOpen = menu.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) { menu.classList.add('open'); }
+}
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown-menu').forEach(function(m) { m.classList.remove('open'); });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) { closeAllDropdowns(); }
+});
+</script>
+</body>
+</html>

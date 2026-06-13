@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki -- 시스템 개요</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v3</span></div>
+  <div class="nav-top">
+    <a href="index.html" class="active">시스템 개요</a>
+    <a href="workflows.html">워크플로우</a>
+    <a href="usage.html">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>JSM Wiki v3</h1>
+  <p class="subtitle">
+    LLM 기반 개인 지식 관리 시스템. 5+1축 프론트매터, prose 관계, 평탄 위키 구조, 결정 시냅스.
+    DeepSeek + Obsidian + 단일 연구 멘토 페르소나. 한국어 자연어로 자동 라우팅.
+  </p>
+
+  <hr>
+
+  <h2>시스템 구조</h2>
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value">7</div>
+      <div class="stat-title">Kind (페이지 유형)</div>
+      <div class="stat-desc">concept, entity, source-record, project, decision, insight, comparison</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">6</div>
+      <div class="stat-title">핵심 워크플로우</div>
+      <div class="stat-desc">Ingest, Save, Query, Lint, Synapse, Promote</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">1</div>
+      <div class="stat-title">멘토 페르소나</div>
+      <div class="stat-desc">Research Mentor (지도교수). 모든 도메인 통합.</div>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card">
+      <div class="card-header">LLM 백엔드</div>
+      <div class="card-body">
+        <div style="display: flex; justify-content: space-between; padding: 4px 0;"><span>DeepSeek-chat</span><span style="color: #9ca3af;">빠른 모드 (Wiki)</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 4px 0;"><span>DeepSeek-reasoner</span><span style="color: #9ca3af;">심층 사고 (Pro think)</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Gemini 2.5 Flash</span><span style="color: #9ca3af;">이미지 분석 전용</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">볼트 구조 (v3)</div>
+      <div class="card-body">
+        <div style="color: #9ca3af; font-size: 12px;"><code>2_Sources/</code> 원본 파일 (읽기 전용, 레거시)</div>
+        <div style="color: #9ca3af; font-size: 12px;"><code>3_Wiki/</code> LLM이 관리하는 평탄 위키</div>
+        <div style="color: #9ca3af; font-size: 12px;"><code>raw/</code> Git-tracked 소스 (새 소스용)</div>
+        <div style="color: #9ca3af; font-size: 12px;"><code>ontology/</code> 주제 트리 + 키워드 어휘</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">프론트매터 (v3)</div>
+      <div class="card-body">
+        <div style="font-size: 12px;">5+1축 모델: kind, form, topics, subject, source-types + domains(자동)</div>
+        <div style="color: #9ca3af; font-size: 11px; margin-top: 6px;">Prose 관계: builds on [[x]], instance of [[y]]</div>
+        <div style="color: #9ca3af; font-size: 11px;">Decision pages: decision-YYYY-MM-DD-slug.md</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>프론트매터 스키마</h2>
+  <div class="card">
+    <div class="card-body">
+      <code style="display: block; white-space: pre; line-height: 1.8; background: transparent; font-size: 12px; color: #6b7280;">---
+kind: concept | entity | source-record | project | decision | insight | comparison
+form: prose | index
+topics: [keyword1, keyword2]           0-5개 키워드
+subject: [study/ml/agents]             subject-tree.md 경로
+source-types: [course, paper, ...]     항상 리스트
+domains: [study]                       자동 계산 (직접 쓰지 않음)
+confidence: high | medium | low
+created: 2026-04-29
+updated: 2026-06-08
+---</code>
+    </div>
+  </div>
+
+  <div class="callout accent">
+    <strong>Prose 관계</strong>: 본문에 자연어로 관계를 작성한다. <code>builds on [[x]]</code>, <code>contradicts [[y]]</code>, <code>instance of [[z]]</code>, <code>applies to [[p]]</code>, <code>decided [[a]] over [[b]]</code>, <code>trade-off: [[c]] vs [[d]]</code>. 프론트매터에 related 필드 없음.
+  </div>
+
+  <hr>
+
+  <h2>Kind 선택 가이드</h2>
+  <div class="card-row" style="margin-bottom: 8px;">
+    <div class="card card-sm">
+      <div class="card-header">concept</div>
+      <div class="card-body" style="color: #6b7280; font-size: 12px;">재사용 가능한 아이디어/방법론/이론. Zettelkasten의 영구 노트.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">entity</div>
+      <div class="card-body" style="color: #6b7280; font-size: 12px;">구체적 대상: 사람, 도구, 조직, 모델, 논문.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">source-record <span class="tag new">신규</span></div>
+      <div class="card-body" style="color: #6b7280; font-size: 12px;">하나의 원본 자료 충실히 요약. Zettelkasten 문헌 노트. concept과 구분.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">project</div>
+      <div class="card-body" style="color: #6b7280; font-size: 12px;">진행 중인 프로젝트. 목표, 진행 상황, 결정.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">decision <span class="tag new">신규</span></div>
+      <div class="card-body" style="color: #6b7280; font-size: 12px;">내린 결정과 그 근거. 트레이드오프, 대안, 제약. /synapse로 대화형 작성.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">insight</div>
+      <div class="card-body" style="color: #6b7280; font-size: 12px;">추출한 통찰. concept보다 개인적, decision보다 재사용성 높음.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-header">comparison</div>
+      <div class="card-body" style="color: #6b7280; font-size: 12px;">A vs B 비교 분석. 장단점, 트레이드오프.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>볼트 구조 (v3)</h2>
+  <div class="card">
+    <div class="card-body">
+      <code style="display: block; white-space: pre; line-height: 1.8; background: transparent; font-size: 12px; color: #6b7280;">Agents/
+  0_System_Overview.md     시스템 개요
+  2_Sources/               읽기 전용 원본 (레거시)
+    papers/  articles/  books/  videos/  podcasts/
+  3_Wiki/                  평탄 위키 (하위 폴더 없음)
+    index.md                큐레이션된 입구 지점
+    log.md                  감사 추적 로그
+    *.md                    모든 페이지 (decision-YYYY-MM-DD-slug.md 등)
+    _stubs.md               제안된 페이지 (그래프 공백 채우기)
+    lint_reports/           건강 검진 리포트
+  3_Logs/                  읽기 전용 레거시
+  wiki_schema.md            위키 헌법 (system prompt)</code>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>네비게이션</h2>
+  <div class="card-row-2">
+    <a href="workflows.html" class="link-card">
+      <div class="card-header">워크플로우 <span class="tag new">v3</span></div>
+      <div class="card-body" style="color: #6b7280;">Ingest, Save, Query, Lint, Synapse, Promote의 6개 핵심 작업.</div>
+    </a>
+    <a href="usage.html" class="link-card">
+      <div class="card-header">사용 가이드</div>
+      <div class="card-body" style="color: #6b7280;">시작 방법. 대화 예시. 프론트매터 작성법. Synapse 대화 예시.</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    v2 -> v3 마이그레이션: 5+1축 프론트매터, prose 관계, 평탄 구조, 결정 시냅스, 연구 멘토 통합.
+    <br>
+    마지막 수정: 2026-06-08.
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1488 @@
+{
+  "generated": "2026-06-09 07:21",
+  "description": "Auto-generated page manifest.",
+  "pages": [
+    {
+      "path": "200만원-초보-투자-로드맵.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "투자",
+        "ETF",
+        "초보",
+        "포트폴리오"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-06",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-NotebookLM-학습-플랜-프롬프트-가이드.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "notebooklm",
+        "학습플랜",
+        "프롬프트",
+        "가이드라인",
+        "교육"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-Partial-Function-vs-Partial-Application.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "함수형 프로그래밍",
+        "partial-function",
+        "partial-application",
+        "프로그래밍 개념"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-PyTorch-nn.Sequential-vs-add-module.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "pytorch",
+        "nn-sequential",
+        "add-module",
+        "딥러닝",
+        "모듈관리"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-Python-Optional-타입-힌트와-선택적-인자.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "python",
+        "typing",
+        "optional",
+        "타입힌트",
+        "함수인자"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-Python-enumerate-함수-정리.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "python",
+        "enumerate",
+        "반복문",
+        "파이썬 내장함수"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-VIT-코드-학습-전략-블랙박스-분해.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "vit",
+        "vision-transformer",
+        "논문리뷰",
+        "코드분석",
+        "학습전략"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-partial-함수-개념-정리.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "partial",
+        "함수형 프로그래밍",
+        "개념정리"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-partial-함수-개념과-활용.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "partial",
+        "함수형 프로그래밍",
+        "python",
+        "코드 재사용",
+        "functools"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-05-31-파이썬-NoneType-개념-정리.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "python",
+        "none-type",
+        "파이썬-기초",
+        "데이터-타입"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-6월-운동-루틴-일정-생성.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "운동",
+        "루틴",
+        "일정",
+        "6월"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-비서-저장-정책-업데이트.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "archive"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-비서-저장-정책-협의-및-업데이트.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "ai-비서",
+        "저장-기능",
+        "오해-해소",
+        "사용법",
+        "정책-업데이트"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-비서의-대화-기록-처리-방식.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "ai-비서",
+        "대화-기록",
+        "문맥-처리",
+        "세션-기억"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-비서의-저장-기능-오해-해소.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "ai-비서",
+        "저장-기능",
+        "오해-해소",
+        "사용법"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-비서의-저장-기능-한계.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "ai-비서",
+        "저장-기능",
+        "한계",
+        "시스템-기능",
+        "데이터-보관"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-비서의-휘발성과-기록-전략.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "ai-비서",
+        "대화-기록",
+        "문맥-처리",
+        "세션-기억",
+        "지식관리",
+        "메모전략"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-웹-서치의-한계와-할루시네이션.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "ai",
+        "할루시네이션",
+        "웹서치",
+        "한계",
+        "신뢰성"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-추론-금지-원칙-및-메모-확인.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "ai-원칙",
+        "추론-금지",
+        "메모-확인",
+        "대화-기록",
+        "ai-정책"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-AI-코치의-운동-전문성-범위.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "운동",
+        "피트니스",
+        "AI코치",
+        "루틴설계",
+        "운동가이드"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-LLM-위키-및-참고-사이트-정리.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "llm",
+        "위키",
+        "참고자료",
+        "학습리소스",
+        "nlp"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-골반-비대칭-교정-루틴-조정.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "골반비대칭",
+        "교정운동",
+        "워밍업",
+        "둔근",
+        "코어",
+        "루틴조정"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-근비대+축구-퍼포먼스-루틴.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "근비대",
+        "축구",
+        "퍼포먼스",
+        "2분할",
+        "골반비대칭",
+        "헬스루틴",
+        "중급자"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-논문-요약-코치-전달-템플릿.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "헬스",
+        "논문요약",
+        "코치활용",
+        "템플릿",
+        "훈련루틴"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-로컬-JSON-캘린더-시스템-분석.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "캘린더",
+        "로컬-저장",
+        "JSON",
+        "자동화",
+        "시스템-분석"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-비대칭-교정-운동-루틴-분석.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "피트니스",
+        "비대칭교정",
+        "운동루틴",
+        "언ilateral",
+        "코어안정성"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-완전체-최종-주간-운동-루틴.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "운동",
+        "루틴",
+        "주간계획",
+        "상체",
+        "하체",
+        "축구",
+        "골반교정"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-운동-논문-활용-및-코치-시스템-연동-방법.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "헬스",
+        "운동논문",
+        "코치시스템",
+        "중량설정",
+        "RM"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-운동-루틴-캘린더-저장-방법.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "운동",
+        "루틴",
+        "캘린더",
+        "상체",
+        "파워운동"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-운동-코치-호출-시스템-설명.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "운동코치",
+        "시스템설명",
+        "대화프로토콜"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-주4회-2분할-상체-루틴-(어깨·팔-약점-보완).md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "운동",
+        "헬스",
+        "상체루틴",
+        "어깨강화",
+        "이두",
+        "2분할",
+        "축구"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-주간-운동-루틴-(2026-06-01-기준).md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "운동",
+        "루틴",
+        "주간계획",
+        "축구",
+        "웨이트"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-총-보수-342만원-계산-내역.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "급여",
+        "보수",
+        "시급",
+        "교통비",
+        "근무시간",
+        "수입계산"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-코치의-데이터-저장-정책-설명.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "데이터정책",
+        "개인정보보호",
+        "코칭시스템",
+        "저장규칙"
+      ],
+      "subject": [
+        "general"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-헬스-루틴-재구성-질문-템플릿.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "헬스",
+        "운동루틴",
+        "피트니스",
+        "질문템플릿",
+        "비서장"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-헬스-루틴-재설정-방법.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "헬스",
+        "루틴",
+        "운동",
+        "코치",
+        "근비대",
+        "분할법"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "2026-06-01-헬스-목적별-루틴-및-분할법.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "archive",
+        "헬스",
+        "운동루틴",
+        "근비대",
+        "근력운동",
+        "분할운동"
+      ],
+      "subject": [
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "6개월-투자-커리큘럼-Karpathy-Top-Down.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "투자",
+        "커리큘럼",
+        "top-down",
+        "카파시"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-07",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "A2XP.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "domain_generalization",
+        "visual_prompting",
+        "attention",
+        "privacy"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "AI-주식-분석-워크플로우.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "AI",
+        "주식",
+        "분석",
+        "워크플로우",
+        "방법론"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-06",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Decision-Transformer.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "decision_transformer",
+        "offline_rl",
+        "sequence_modeling",
+        "transformer",
+        "causality"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Domain-Generalization.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "domain_generalization",
+        "computer_vision",
+        "robustness"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "DuPont-분석과-ROE-분해.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "재무분석",
+        "ROE",
+        "듀퐁분석",
+        "가치투자"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-06",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "ETF-vs-개별주식.md",
+      "kind": "comparison",
+      "form": "prose",
+      "topics": [
+        "ETF",
+        "주식",
+        "투자",
+        "비교"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "ETF-기초.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "ETF",
+        "투자",
+        "분산투자"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "ETF-주요-상품.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "ETF",
+        "S&P500",
+        "나스닥",
+        "코스피",
+        "투자"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Embodied-Language-Models.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "embodied_ai",
+        "multimodal",
+        "grounding",
+        "robot_learning"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "ISA-계좌와-절세-전략.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "절세",
+        "ISA",
+        "ETF",
+        "투자"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Mamba-QnA-2026-06-08.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "mamba",
+        "ssm",
+        "qna",
+        "paper_reading"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-08",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Mamba.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "mamba",
+        "state_space_model",
+        "ssm",
+        "sequence_modeling",
+        "language_modeling",
+        "hardware"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Medisod-Column.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "learning",
+        "metacognition",
+        "study_methods",
+        "education"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Offline-RL.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "offline_rl",
+        "reinforcement_learning",
+        "distribution_shift"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "OpenVLA.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "vla",
+        "robot_learning",
+        "vision_language",
+        "manipulation",
+        "fine_tuning"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "PaLM-E.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "palm_e",
+        "embodied_ai",
+        "multimodal",
+        "robot_planning",
+        "language_model"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "PerAct.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "peract",
+        "robot_manipulation",
+        "behavior_cloning",
+        "perceiver",
+        "voxel",
+        "language_grounding"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "RICE-프롬프트-구조와-AI-도구-선택-가이드.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "AI",
+        "프롬프트",
+        "투자",
+        "방법론"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-06",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "RT-1.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "rt1",
+        "robotics_transformer",
+        "manipulation",
+        "language_conditioned",
+        "multi_task"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "RT-2.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "rt2",
+        "vla",
+        "vision_language_action",
+        "internet_knowledge",
+        "emergent_capabilities"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "S&P500-지수.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "S&P500",
+        "미국주식",
+        "지수",
+        "ETF"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Selection-Mechanism.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "selection_mechanism",
+        "state_space_model",
+        "content_awareness",
+        "gating"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Sequence-Modeling-for-RL.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "sequence_modeling",
+        "reinforcement_learning",
+        "decision_transformer",
+        "generative_modeling"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "State-Space-Models.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "state_space_model",
+        "ssm",
+        "s4",
+        "sequence_modeling",
+        "control_theory"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "VC-1.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "vc1",
+        "visual_representation",
+        "embodied_ai",
+        "pretraining",
+        "mae"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "VIMA.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "vima",
+        "multimodal_prompts",
+        "robot_manipulation",
+        "transformer",
+        "zero_shot"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "ViT-코드-분석-학습-플랜.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "vit",
+        "pytorch",
+        "deep-learning",
+        "tutorial"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "ViT.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "vit",
+        "vision_transformer",
+        "image_classification",
+        "transformer",
+        "computer_vision"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Vision-Language-Action-Models.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "vla",
+        "robot_learning",
+        "foundation_models",
+        "transfer_learning"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "Visual-Prompting.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "visual_prompting",
+        "transfer_learning",
+        "privacy",
+        "prompting"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "decision-2026-06-08-yeongtong-wolse.md",
+      "kind": "decision",
+      "form": "prose",
+      "topics": [
+        "real-estate",
+        "rental-decision",
+        "wolse"
+      ],
+      "subject": [
+        "economy/real-estate"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-08",
+      "updated": "2026-06-08"
+    },
+    {
+      "path": "pi0.md",
+      "kind": "entity",
+      "form": "prose",
+      "topics": [
+        "pi0",
+        "vla",
+        "flow_matching",
+        "robot_foundation_model",
+        "dexterous_manipulation",
+        "cross_embodiment"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-03",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "경제-투자-입문-에이전트-주도-커리큘럼.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "투자",
+        "커리큘럼",
+        "입문"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-06",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "경제-투자-주간-루틴-3트랙-시스템.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "투자",
+        "루틴",
+        "주간계획"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-06",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "경제적-해자-Moat-분석.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "가치투자",
+        "해자",
+        "경쟁우위",
+        "질적분석"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-06",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "국내상장-vs-해외직구-ETF.md",
+      "kind": "comparison",
+      "form": "prose",
+      "topics": [
+        "ETF",
+        "해외투자",
+        "절세",
+        "ISA"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "논문-영단어장.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "vocabulary",
+        "english",
+        "papers"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-08",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "삶의-최적화-Overview.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "lifestyle",
+        "optimization",
+        "exercise",
+        "diet",
+        "skincare",
+        "style"
+      ],
+      "subject": [
+        "general",
+        "fitness"
+      ],
+      "domains": [],
+      "confidence": "low",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "인지과학-기반-학습·연구-최적화.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "인지과학",
+        "학습법",
+        "보고서"
+      ],
+      "subject": [
+        "study"
+      ],
+      "domains": [],
+      "confidence": "medium",
+      "created": "2026-06-02",
+      "updated": "2026-06-09"
+    },
+    {
+      "path": "적립식-투자와-핵심위성-전략.md",
+      "kind": "concept",
+      "form": "prose",
+      "topics": [
+        "투자",
+        "ETF",
+        "적립식",
+        "포트폴리오"
+      ],
+      "subject": [
+        "economy"
+      ],
+      "domains": [],
+      "confidence": "high",
+      "created": "2026-06-05",
+      "updated": "2026-06-09"
+    }
+  ]
+}

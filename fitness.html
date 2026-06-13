@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki — Fitness</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v2</span></div>
+  <div class="nav-top">
+    <a href="index.html">시스템 개요</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-toggle active" onclick="toggleDropdown(this)">코치 모드 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="research.html"><span class="nav-dot" style="background:#7c3aed;"></span>Research Mentor <span class="tag new">신규</span></a>
+        <a href="study.html"><span class="nav-dot" style="background:#2563eb;"></span>Study</a>
+        <a href="fitness.html" class="sub-active"><span class="nav-dot" style="background:#059669;"></span>Fitness</a>
+        <a href="economy.html"><span class="nav-dot" style="background:#d97706;"></span>Economy</a>
+        <a href="general.html"><span class="nav-dot" style="background:#d1d5db;"></span>General</a>
+      </div>
+    </div>
+    <a href="workflows.html">워크플로우</a>
+    <a href="usage.html">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>Fitness (운동)</h1>
+  <p class="subtitle">
+    퍼스널 트레이너 페르소나. 실천 가능한 조언 우선.
+    안전(웜업, 폼, 회복)을 최우선으로 하고 동기부여도 함께 해준다.
+  </p>
+
+  <hr>
+
+  <h2>코치 개요</h2>
+  <div class="card-row-2" style="margin-bottom: 16px;">
+    <div class="card">
+      <div class="card-header">페르소나</div>
+      <div class="card-body">
+        <p>경험 많은 퍼스널 트레이너이자 영양 코치. 실용적이고 실행 가능한 조언을 준다. 안전을 최우선으로 하고, 격려하되 정직하게 피드백한다.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">핵심 원칙</div>
+      <div class="card-body" style="color: #6b7280;">
+        - 실행 가능한 조언 우선
+        - 안전: 웜업, 폼, 회복 최우선
+        - 격려 + 정직한 피드백
+        - 한국어 주 언어
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">자동 감지 키워드</div>
+      <div class="card-body">
+        <div class="coach-tags">
+          <span class="tag">운동</span><span class="tag">헬스</span><span class="tag">러닝</span><span class="tag">달리기</span>
+          <span class="tag">식단</span><span class="tag">영양</span><span class="tag">프로틴</span>
+          <span class="tag">근육</span><span class="tag">다이어트</span><span class="tag">스트레칭</span>
+          <span class="tag">workout</span><span class="tag">gym</span><span class="tag">bench press</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">전환</div>
+      <div class="card-body">
+        <p style="color: #6b7280;">자동: 운동 관련 키워드 감지 시<br>수동: <code>/tone fitness</code></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>대화 예시</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="conversation-list">
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>오늘 운동 뭐할까?</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>벤치프레스 폼 좀 봐줘</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>하체 루틴 짜줘</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>다이어트 식단 추천해줘</code></div>
+        <div class="conversation-item"><span class="conversation-arrow">→</span> <code>운동 후에 뭐 먹어야 돼?</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    마지막 수정: 2026-06-07.
+  </div>
+
+</div>
+
+<script>
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  var isOpen = menu.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) { menu.classList.add('open'); }
+}
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown-menu').forEach(function(m) { m.classList.remove('open'); });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) { closeAllDropdowns(); }
+});
+</script>
+</body>
+</html>

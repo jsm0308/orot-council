@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSM Wiki — General</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-title"><a href="index.html">JSM Wiki</a><span>v2</span></div>
+  <div class="nav-top">
+    <a href="index.html">시스템 개요</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-toggle active" onclick="toggleDropdown(this)">코치 모드 ▾</button>
+      <div class="nav-dropdown-menu">
+        <a href="research.html"><span class="nav-dot" style="background:#7c3aed;"></span>Research Mentor <span class="tag new">신규</span></a>
+        <a href="study.html"><span class="nav-dot" style="background:#2563eb;"></span>Study</a>
+        <a href="fitness.html"><span class="nav-dot" style="background:#059669;"></span>Fitness</a>
+        <a href="economy.html"><span class="nav-dot" style="background:#d97706;"></span>Economy</a>
+        <a href="general.html" class="sub-active"><span class="nav-dot" style="background:#d1d5db;"></span>General</a>
+      </div>
+    </div>
+    <a href="workflows.html">워크플로우</a>
+    <a href="usage.html">사용 가이드</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h1>General (일반)</h1>
+  <p class="subtitle">
+    기본 모드 페르소나. 질문에 따라 깊이와 톤을 자동 조절한다.
+    다른 모드가 감지되지 않을 때 자동으로 활성화된다.
+  </p>
+
+  <hr>
+
+  <h2>코치 개요</h2>
+  <div class="card-row-2" style="margin-bottom: 16px;">
+    <div class="card">
+      <div class="card-header">페르소나</div>
+      <div class="card-body">
+        <p>도움이 되고 지식이 풍부한 어시스턴트. 질문에 따라 깊이를 조절하고 대화형으로 응답한다. 접근하기 쉽고 편안한 톤을 유지한다.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">핵심 원칙</div>
+      <div class="card-body" style="color: #6b7280;">
+        - 질문에 맞게 깊이 조절
+        - 대화형, 접근하기 쉬운 톤
+        - 자동 활성화 (fallback)
+        - 한국어 주 언어
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">활성화 조건</div>
+      <div class="card-body" style="color: #6b7280;">
+        - 시스템 시작 시 기본값
+        - 다른 모드 키워드 미감지 시
+        - 수동 전환: <code>/tone general</code>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">특징</div>
+      <div class="card-body" style="color: #6b7280;">
+        - 가장 광범위한 질문 처리
+        - 깊이와 전문성을 질문에 맞춤
+        - 위키 검색 결과가 자동 주입됨
+        - 응답이 분석적이면 저장 제안
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    General 모드는 다른 모드로 분류되지 않는 모든 대화의 기본값이다. 질문이 특정 도메인(연구, 학습, 운동, 경제)에 속하면 자동으로 해당 모드로 전환된다.
+    <strong>모드가 전환되면 응답 앞에 <code>(research)</code>, <code>(study)</code> 같은 표시가 붙는다.</strong> General 모드에서는 표시가 생략된다.
+  </div>
+
+  <div class="footer">
+    마지막 수정: 2026-06-07.
+  </div>
+
+</div>
+
+<script>
+function toggleDropdown(btn) {
+  var menu = btn.nextElementSibling;
+  var isOpen = menu.classList.contains('open');
+  closeAllDropdowns();
+  if (!isOpen) { menu.classList.add('open'); }
+}
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown-menu').forEach(function(m) { m.classList.remove('open'); });
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.nav-dropdown')) { closeAllDropdowns(); }
+});
+</script>
+</body>
+</html>
