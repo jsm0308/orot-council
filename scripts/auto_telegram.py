@@ -212,10 +212,15 @@ def generate_invest_brief() -> str:
                 {"role": "user", "content": user},
             ],
             temperature=0.4,
-            max_tokens=600,
+            max_tokens=800,
         )
-        brief = resp.choices[0].message.content.strip()
-        return f"투자 브리핑 | {datetime.now().strftime('%m/%d %H:%M')}\n\n{brief}"
+        content = resp.choices[0].message.content
+        print(f"[AutoPush] DeepSeek invest: {len(content) if content else 'None'} chars")
+        if not content or not content.strip():
+            print("[AutoPush] Invest: empty response from DeepSeek, using fallback")
+            return fallback_invest_brief()
+        brief = content.strip()
+        return f"투자 브리핑 | {now.strftime('%m/%d %H:%M')}\n{brief}"
     except Exception as e:
         print(f"[AutoPush] DeepSeek invest error: {e}")
         return fallback_invest_brief()
@@ -285,10 +290,15 @@ JSM 프로필:
                 {"role": "user", "content": user},
             ],
             temperature=0.5,
-            max_tokens=400,
+            max_tokens=500,
         )
-        guide = resp.choices[0].message.content.strip()
-        return f"오늘의 운동 | {now.strftime('%m/%d')} ({weekday_kr})\n\n{guide}"
+        content = resp.choices[0].message.content
+        print(f"[AutoPush] DeepSeek health: {len(content) if content else 'None'} chars")
+        if not content or not content.strip():
+            print("[AutoPush] Health: empty response from DeepSeek, using fallback")
+            return fallback_health_report()
+        guide = content.strip()
+        return f"오늘의 운동 | {now.strftime('%m/%d')} ({weekday_kr})\n{guide}"
     except Exception as e:
         print(f"[AutoPush] DeepSeek health error: {e}")
         return fallback_health_report()
