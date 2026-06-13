@@ -10,7 +10,7 @@ on:
     - cron: '0 10 * * *'
     # KST 21:00 = UTC 12:00
     - cron: '0 12 * * *'
-  workflow_dispatch:  # Manual trigger for testing
+  workflow_dispatch:  # Manual trigger
 
 jobs:
   push:
@@ -25,7 +25,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install deps
-        run: pip install requests python-dotenv
+        run: pip install requests python-dotenv openai
 
       - name: Determine mode by hour (KST)
         id: mode
@@ -48,4 +48,5 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: python scripts/auto_telegram.py --mode ${{ steps.mode.outputs.mode }}
