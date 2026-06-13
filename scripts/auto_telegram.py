@@ -202,7 +202,17 @@ def generate_invest_brief() -> str:
 
 300-400자 내외. 불필요한 수식어 금지. 데이터 기반. 근거 없는 낙관/비관 금지."""
 
-    user = f"다음 시장 데이터를 기반으로 오늘({datetime.now().strftime('%Y-%m-%d')}) 아침 투자 브리핑을 작성해라:\n\n```json\n{json.dumps(market, ensure_ascii=False, indent=2)}\n```\n\n비트코인: {json.dumps(btc, ensure_ascii=False)}"
+    # Trim market data to essential fields for DeepSeek
+    essential = {}
+    for key in ["S&P500 ETF", "NASDAQ100 ETF", "KOSPI", "usd_krw", "fear_greed"]:
+        if key in market:
+            essential[key] = market[key]
+
+    user = f"""다음 시장 데이터로 오늘({now.strftime('%Y-%m-%d')}) 브리핑을 300자 이내 한국어로 작성해라. 숫자는 정확히 기입.
+
+{json.dumps(essential, ensure_ascii=False, indent=2)}
+
+BTC: {json.dumps(btc, ensure_ascii=False)}"""
 
     try:
         resp = client.chat.completions.create(
@@ -215,7 +225,8 @@ def generate_invest_brief() -> str:
             max_tokens=800,
         )
         content = resp.choices[0].message.content
-        print(f"[AutoPush] DeepSeek invest: {len(content) if content else 'None'} chars")
+        finish = resp.choices[0].finish_reason
+        print(f"[AutoPush] DeepSeek invest: {len(content) if content else 'None'} chars, finish={finish}")
         if not content or not content.strip():
             print("[AutoPush] Invest: empty response from DeepSeek, using fallback")
             return fallback_invest_brief()
@@ -227,29 +238,41 @@ def generate_invest_brief() -> str:
 
 
 def fallback_invest_brief() -> str:
-    """Fallback when DeepSeek unavailable."""
+    """Fallback when DeepSeek unavailable. Uses real API data when possible."""
     market = fetch_market_snapshot()
     btc = fetch_btc_status()
-    lines = [f"투자 브리핑 | {datetime.now().strftime('%m/%d %H:%M')}", ""]
+    now = datetime.now()
+    lines = [f"투자 브리핑 | {now.strftime('%m/%d %H:%M')}", ""]
 
+    has_data = False
     if "S&P500 ETF" in market:
         sp = market["S&P500 ETF"]
-        lines.append(f"S&P500: {sp['price']:.0f} ({sp['change_pct']:+.2f}%)")
+        lines.append(f"S&P500: {sp['price']:.1f} ({sp['change_pct']:+.2f}%)")
+        has_data = True
     if "NASDAQ100 ETF" in market:
         nq = market["NASDAQ100 ETF"]
-        lines.append(f"NASDAQ100: {nq['price']:.0f} ({nq['change_pct']:+.2f}%)")
+        lines.append(f"NASDAQ100: {nq['price']:.1f} ({nq['change_pct']:+.2f}%)")
+        has_data = True
     if "KOSPI" in market:
         ks = market["KOSPI"]
-        lines.append(f"KOSPI: {ks['price']:.0f} ({ks['change_pct']:+.2f}%)")
+        lines.append(f"KOSPI: {ks['price']:.1f} ({ks['change_pct']:+.2f}%)")
+        has_data = True
     if "usd_krw" in market:
         lines.append(f"USD/KRW: {market['usd_krw']}")
+        has_data = True
     if isinstance(btc, dict) and "price" in btc:
         lines.append(f"BTC: {btc['price']:,}원 ({btc.get('change_pct', 0):+.2f}%)")
+        has_data = True
     if "fear_greed" in market:
         fg = market["fear_greed"]
-        lines.append(f"공포·탐욕: {fg['value']} ({fg['classification']})")
+        lines.append(f"Fear&Greed: {fg['value']} ({fg['classification']})")
+        has_data = True
 
-    lines.append("\nISA 200만원 8월 집행 예정")
+    if not has_data:
+        lines.append("(시장 데이터 수집 실패 — Yahoo Finance/Upbit API 불안정)")
+        lines.append("월요일~일요일까지 DeepSeek 분석 복원 예정")
+
+    lines.append(f"\nISA 200만원 8월 집행 | BTC봇: 실거래")
     return "\n".join(lines)
 
 
@@ -293,7 +316,8 @@ JSM 프로필:
             max_tokens=500,
         )
         content = resp.choices[0].message.content
-        print(f"[AutoPush] DeepSeek health: {len(content) if content else 'None'} chars")
+        finish = resp.choices[0].finish_reason
+        print(f"[AutoPush] DeepSeek health: {len(content) if content else 'None'} chars, finish={finish}")
         if not content or not content.strip():
             print("[AutoPush] Health: empty response from DeepSeek, using fallback")
             return fallback_health_report()
