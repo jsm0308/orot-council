@@ -72,7 +72,7 @@ def fetch_market_snapshot() -> dict:
         tickers = {"SPY": "S&P500 ETF", "QQQ": "NASDAQ100 ETF", "^KS11": "KOSPI"}
         for symbol, label in tickers.items():
             url = f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=5d"
-            resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+            resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=8)
             if resp.status_code == 200:
                 result = resp.json()["chart"]["result"][0]
                 meta = result["meta"]
@@ -87,8 +87,15 @@ def fetch_market_snapshot() -> dict:
                         "change_pct": round(change_pct, 2),
                         "prev_close": prev_close,
                     }
+                elif "regularMarketPrice" in meta and "previousClose" in meta:
+                    data[label] = {
+                        "price": meta["regularMarketPrice"],
+                        "change_pct": round(meta.get("regularMarketChangePercent", 0), 2),
+                    }
             else:
                 data["errors"].append(f"{label}: HTTP {resp.status_code}")
+    except requests.exceptions.Timeout:
+        data["errors"].append("Yahoo: timeout")
     except Exception as e:
         data["errors"].append(f"Yahoo: {str(e)[:80]}")
 
