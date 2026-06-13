@@ -64,10 +64,13 @@ def send_message(chat_id: int, text: str):
         text = text[:4090] + "..."
     resp = requests.post(
         f"{API_BASE}/sendMessage",
-        json={"chat_id": chat_id, "text": text, "parse_mode": "HTML"},
+        json={"chat_id": chat_id, "text": text},
         timeout=15,
     )
-    return resp.json()
+    data = resp.json()
+    if not data.get("ok"):
+        print(f"[AutoPush] Telegram error: {data.get('description', data)}")
+    return data
 
 
 # ---------------------------------------------------------------------------
@@ -89,7 +92,7 @@ def generate_health_report() -> str:
                 lines = [l.strip("- ").strip() for l in s.split("\n")[1:15] if l.strip()]
                 routine = "\n".join(f"  {i+1}. {l}" for i, l in enumerate(lines) if l)
                 if routine:
-                    return f"<b>오늘의 운동</b> | {now.strftime('%m/%d')} ({weekday_kr})\n\n{routine}"
+                    return f"오늘의 운동 | {now.strftime('%m/%d')} ({weekday_kr})\n\n{routine}"
                 break
 
     # Fallback: weekly template based on day
@@ -104,7 +107,7 @@ def generate_health_report() -> str:
     }
     default = templates.get(now.weekday(), "오늘은 휴식입니다.")
 
-    return f"<b>오늘의 운동</b> | {now.strftime('%m/%d')} ({weekday_kr})\n\n{default}\n\n<i>메모에 기록된 실제 루틴이 있으면 자동 반영됩니다.</i>"
+    return f"오늘의 운동 | {now.strftime('%m/%d')} ({weekday_kr})\n\n{default}\n\n(메모에 기록된 실제 루틴이 있으면 자동 반영됩니다.)"
 
 
 def generate_invest_brief() -> str:
@@ -124,7 +127,7 @@ def generate_invest_brief() -> str:
 
     # Daily checklist
     lines = [
-        f"<b>투자 브리핑</b> | {now.strftime('%m/%d')}",
+        f"투자 브리핑 | {now.strftime('%m/%d')}",
         "",
         "상시 체크:",
         "  - S&P500 지수 방향성",
@@ -137,7 +140,7 @@ def generate_invest_brief() -> str:
         lines.append("\n최근 위키 업데이트:")
         lines.extend(wiki_items)
 
-    lines.append(f"\n<i>ISA 200만원 8월 집행 예정 | .env DRY_RUN=false 확인</i>")
+    lines.append(f"\nISA 200만원 8월 집행 예정 | .env DRY_RUN=false 확인")
 
     return "\n".join(lines)
 
@@ -146,7 +149,7 @@ def generate_status_report() -> str:
     """Generate system status summary."""
     now = datetime.now()
 
-    parts = [f"<b>시스템 상태</b> | {now.strftime('%m/%d %H:%M')}"]
+    parts = [f"시스템 상태 | {now.strftime('%m/%d %H:%M')}"]
 
     # Tweet draft
     if DRAFT_PATH.exists():
@@ -165,7 +168,7 @@ def generate_status_report() -> str:
         wiki_count = len(list(WIKI_PATH.glob("*.md")))
         parts.append(f"위키: {wiki_count}페이지")
 
-    parts.append("\n/test 로 명령어 목록 확인")
+    parts.append("\n/start 로 명령어 목록 확인")
 
     return "\n".join(parts)
 
@@ -182,7 +185,7 @@ def notify_tweet_ready():
     chat_id = get_chat_id()
     text = (
         "오늘의 트윗 초안이 준비되었습니다:\n\n"
-        f"<blockquote>{draft['tweet']}</blockquote>\n\n"
+        f"{draft['tweet']}\n\n"
         "/tweet 으로 확인 후 승인/거절"
     )
     send_message(chat_id, text)
