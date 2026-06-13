@@ -47,6 +47,7 @@ import requests
 DRAFT_PATH = BASE_DIR / "data" / "tweet_draft.json"
 MEMO_PATH = BASE_DIR / "JSM-memo.md"
 WIKI_PATH = Path("C:/Users/Gram/Desktop/jsm obsidian/jsm personal agents (obsidian files)/Agents/2_Wiki")
+CHAT_ID_PATH = BASE_DIR / "data" / "telegram_chat_id.txt"
 
 # ---------------------------------------------------------------------------
 # Telegram API helpers
@@ -97,6 +98,11 @@ def send_keyboard(chat_id: int, text: str, buttons: list[list[str]]):
 # ---------------------------------------------------------------------------
 
 def cmd_start(chat_id: int):
+    # Auto-save chat_id for push notifications
+    CHAT_ID_PATH.parent.mkdir(parents=True, exist_ok=True)
+    CHAT_ID_PATH.write_text(str(chat_id))
+    print(f"[TelegramBot] Chat ID saved: {chat_id}")
+
     welcome = (
         "JSM Personal Agent System\n\n"
         "Commands:\n"
