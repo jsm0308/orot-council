@@ -153,87 +153,53 @@ def fetch_btc_status() -> dict:
 # ---------------------------------------------------------------------------
 
 def generate_invest_brief() -> str:
-    """DeepSeek-generated investment brief with real market data.
-    On Sundays, generates a weekly deep-dive report instead of daily brief."""
+    """Investment brief with real market data.
+    Uses real-time API data directly (Yahoo Finance, Upbit, Fear&Greed).
+    On Sundays, attempts DeepSeek-powered weekly deep-dive; falls back gracefully."""
+    now = datetime.now()
+    is_sunday = now.weekday() == 6
+
+    # For daily briefs, just use real API data directly (fast, reliable)
+    if not is_sunday:
+        return fallback_invest_brief()
+
+    # Sunday: attempt deep-dive with DeepSeek
     if not client:
         return fallback_invest_brief()
 
-    now = datetime.now()
-    is_sunday = now.weekday() == 6
     market = fetch_market_snapshot()
     btc = fetch_btc_status()
-
-    if is_sunday:
-        system = """당신은 JSM의 개인 투자 리서치 애널리스트다. 월스트리트 셀사이드 방법론을 따르며, 한국어로 응답.
-사용자 프로필:
-- 미래에셋증권 ISA 보유, 8월 말 200만원 S&P500 ETF 중심 코어-위성 전략 집행 예정
-- 투자 성향: 장기 성장 (5년+), 중간 변동성 감내
-- 모든 데이터 포인트에 출처를 명시할 것 (번호 매겨서 하단에 주석)
-
-주간 보고서 형식 (한국어 1,500자 내외):
-## 1. 포트폴리오 상태
-- 현재 보유, 현금 비중, 리밸런싱 필요 여부
-
-## 2. 이번 주 주목할 섹터/종목 (2-3개)
-- 각각 3줄 근거 + JSM과의 연관성 1줄
-
-## 3. 매크로 환경
-- Fed 금리, CPI, VIX, 원/달러, 10년물 금리 등 핵심 지표
-- 이번 주 주요 이벤트
-
-## 4. 액션 추천 (2-3개 옵션, 그중 하나 선택해 설득)
-- 옵션 A/B with 근거, 리스크, 예상 수익
-
-## 5. 리스크/손실 제한선
-
-근거 없는 주장 금지. 베어 케이스 반드시 포함. 확률적 언어 사용."""
-    else:
-        system = """당신은 JSM의 개인 투자 리서치 애널리스트다.
-한국어로 응답. 사용자 프로필:
-- 미래에셋증권 ISA 보유, 8월 말 200만원 S&P500 ETF 중심 코어-위성 전략 집행 예정
-- 현재 보유: TIGER 미국S&P500 (진행 중)
-- 투자 성향: 장기 성장 (5년+), 중간 변동성 감내
-
-매일 아침 브리핑 형식:
-1. 주요 지수 스냅샷 (S&P500, NASDAQ, KOSPI, BTC, 원/달러)
-2. 오늘 주목할 포인트 1-2개 (데이터에 근거, 추측 금지)
-3. JSM 포트폴리오 관련 코멘트 (ISA 집행 타이밍, S&P500 매수 적기 여부)
-4. 한 줄 요약
-
-300-400자 내외. 불필요한 수식어 금지. 데이터 기반. 근거 없는 낙관/비관 금지."""
-
-    # Trim market data to essential fields for DeepSeek
     essential = {}
     for key in ["S&P500 ETF", "NASDAQ100 ETF", "KOSPI", "usd_krw", "fear_greed"]:
         if key in market:
             essential[key] = market[key]
 
-    user = f"""다음 시장 데이터로 오늘({now.strftime('%Y-%m-%d')}) 브리핑을 300자 이내 한국어로 작성해라. 숫자는 정확히 기입.
+    system = """당신은 JSM의 개인 투자 리서치 애널리스트다. 월스트리트 셀사이드 방법론을 따르며, 한국어로 응답.
+모든 데이터 포인트에 출처를 번호로 표시. 근거 없는 주장 금지. 베어 케이스 반드시 포함.
 
-{json.dumps(essential, ensure_ascii=False, indent=2)}
+주간 보고서 (1,000자 내외):
+1. 포트폴리오 상태 (보유, 현금비중, 리밸런싱)
+2. 주목할 섹터/종목 2-3개 (3줄 근거 + JSM 연관성)
+3. 매크로 환경 (Fed, CPI, VIX, 원/달러 등)
+4. 액션 추천 (옵션 A/B + 설득)
+5. 리스크/손실 제한선"""
 
-BTC: {json.dumps(btc, ensure_ascii=False)}"""
+    user = f"오늘({now.strftime('%Y-%m-%d')}) 주간 보고서:\n{json.dumps(essential, ensure_ascii=False)}\nBTC: {json.dumps(btc, ensure_ascii=False)}"
 
     try:
         resp = client.chat.completions.create(
             model="deepseek-v4-pro",
-            messages=[
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-            temperature=0.4,
-            max_tokens=800,
+            messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+            temperature=0.4, max_tokens=1000,
         )
         content = resp.choices[0].message.content
         finish = resp.choices[0].finish_reason
-        print(f"[AutoPush] DeepSeek invest: {len(content) if content else 'None'} chars, finish={finish}")
+        print(f"[AutoPush] DeepSeek weekly: {len(content) if content else 'None'} chars, finish={finish}")
         if not content or not content.strip():
-            print("[AutoPush] Invest: empty response from DeepSeek, using fallback")
             return fallback_invest_brief()
-        brief = content.strip()
-        return f"투자 브리핑 | {now.strftime('%m/%d %H:%M')}\n{brief}"
+        return f"주간 투자 보고서 | {now.strftime('%m/%d')}\n{content.strip()}"
     except Exception as e:
-        print(f"[AutoPush] DeepSeek invest error: {e}")
+        print(f"[AutoPush] DeepSeek weekly error: {e}")
         return fallback_invest_brief()
 
 
