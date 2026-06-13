@@ -10,7 +10,19 @@ on:
     - cron: '0 10 * * *'
     # KST 21:00 = UTC 12:00
     - cron: '0 12 * * *'
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Report type'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - invest
+          - health
+          - status
+          - tweet
 
 jobs:
   push:
@@ -27,21 +39,28 @@ jobs:
       - name: Install deps
         run: pip install requests python-dotenv openai
 
-      - name: Determine mode by hour (KST)
+      - name: Determine mode
         id: mode
+        env:
+          INPUT_MODE: ${{ github.event.inputs.mode }}
         run: |
-          HOUR=$(TZ='Asia/Seoul' date +%H)
-          echo "KST hour: $HOUR"
-          if [ "$HOUR" = "07" ]; then
-            echo "mode=health" >> $GITHUB_OUTPUT
-          elif [ "$HOUR" = "09" ]; then
-            echo "mode=invest" >> $GITHUB_OUTPUT
-          elif [ "$HOUR" = "19" ]; then
-            echo "mode=tweet" >> $GITHUB_OUTPUT
-          elif [ "$HOUR" = "21" ]; then
-            echo "mode=status" >> $GITHUB_OUTPUT
+          if [ -n "$INPUT_MODE" ]; then
+            echo "mode=$INPUT_MODE" >> $GITHUB_OUTPUT
+            echo "Using manual mode: $INPUT_MODE"
           else
-            echo "mode=all" >> $GITHUB_OUTPUT
+            HOUR=$(TZ='Asia/Seoul' date +%H)
+            echo "KST hour: $HOUR"
+            if [ "$HOUR" = "07" ]; then
+              echo "mode=health" >> $GITHUB_OUTPUT
+            elif [ "$HOUR" = "09" ]; then
+              echo "mode=invest" >> $GITHUB_OUTPUT
+            elif [ "$HOUR" = "19" ]; then
+              echo "mode=tweet" >> $GITHUB_OUTPUT
+            elif [ "$HOUR" = "21" ]; then
+              echo "mode=status" >> $GITHUB_OUTPUT
+            else
+              echo "mode=all" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Send Telegram
